@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactTypingEffect from 'react-typing-effect';
 import Sidebar from '../../components/Sidebar.jsx'
 import SattaResult from '../../components/SattaResult.jsx';
@@ -8,92 +8,28 @@ const Home = () => {
 
     const text = "Welcome to spboss.blog no1 website satta Matka kalyan Matka fast result daily free game Kalyan milan Rajdhani ratan main bazar international sp boss no1.matka chat top fast result matka site SpBoss guessing daily Final ank single open Motor Pattai Update by by Your market ad free admin sir contact Best application download spboss"
 
-    const data = [
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        }, {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
-        },
-        {
-            name: "MADHURI",
-            time1: "10:00 AM",
-            time2: "10:00 AM",
-            number: "350-87-359 ",
-
+    const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+    const [liveUpdateData, setLiveUpdateData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${baseUrl}/api/liveupdate`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data)
+                setLiveUpdateData(data.liveUpdates)
+                console.log("arraydata", liveUpdateData);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
         }
-    ];
+
+        fetchData();
+    }, []);
 
     const Tricks = [
         {
@@ -152,7 +88,7 @@ const Home = () => {
                     </div>
                 </section>
             </div>
-            <SattaResult data={data} />
+            <SattaResult data={liveUpdateData} />
 
             <div class="container flex flex-row   mx-auto py-5 my-5 space-x-4">
                 <div className="  w-80 min-h-full bg-white text-base-content p-5 shadow-2xl text-center">
