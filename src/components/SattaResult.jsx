@@ -9,16 +9,16 @@ const SattaResult = ({ data }) => {
                     <div class="">
 
                         <div class="flex flex-row">
-                            <div class=" w-1/4  flex flex-col ">
+                            <div class=" w-1/4  flex flex-col h-1/2 ">
                                 <p class="text-4xl mx-auto text-red-500 mb-2">Live Updates</p>
                                 <div class="overflow-y-scroll flex flex-wrap h-1/2">
-                                    {data.map((jodi) => {
+                                    {data?.map((jodi) => {
                                         return (
                                             <>
                                                 <div class=" p-4 w-full  " >
                                                     <div class="border-2 p-4 bg-gradient-to-r from-slate-900 to-slate-700 text-white">
-                                                        <h3 class="text-white text-xl tracking-widest title-font font-bold mb-1">{jodi.title}</h3>
-                                                        <h2 class="text-white title-font text-lg font-medium">{jodi.number}</h2>
+                                                        <h3 class="text-white text-xl tracking-widest title-font font-bold mb-1">{jodi?.title}</h3>
+                                                        <h2 class="text-white title-font text-lg font-medium">{jodi?.number}</h2>
                                                         <div class="flex space-x-10">
                                                             {/* <p class="mt-1"> {jodi.startTime}</p> */}
                                                             {/* <p class="mt-1"> {jodi.endTime}</p> */}
@@ -34,7 +34,7 @@ const SattaResult = ({ data }) => {
                                     })}
                                 </div>
                             </div>
-                            <div class="w-3/4  flex flex-wrap">
+                            <div class="w-3/4  flex flex-wrap h-1/2">
 
                             </div>
 

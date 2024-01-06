@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactTypingEffect from 'react-typing-effect';
-import Sidebar from '../../components/Sidebar.jsx'
+// import Sidebar from '../../components/Sidebar.jsx'
 import SattaResult from '../../components/SattaResult.jsx';
 
 
@@ -10,8 +10,8 @@ const Home = () => {
 
     const baseUrl = import.meta.env.VITE_APP_BASE_URL;
     const [liveUpdateData, setLiveUpdateData] = useState([]);
+    const [trickData, setTrickData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -19,10 +19,10 @@ const Home = () => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const data = await response.json();
+                const data = await response?.json();
                 console.log(data)
-                setLiveUpdateData(data.liveUpdates)
-                console.log("arraydata", liveUpdateData);
+                setLiveUpdateData(data?.liveUpdates)
+                console.log("liveupdate data", liveUpdateData);
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
@@ -31,34 +31,30 @@ const Home = () => {
         fetchData();
     }, []);
 
-    const Tricks = [
-        {
-            "name": "Sridevi",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        },
-        {
-            "name": "Kalyan morning",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        },
-        {
-            "name": "Milan morning",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        },
-        {
-            "name": "Madhuri",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        },
-        {
-            "name": "Karnataka day",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        }
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${baseUrl}/api/trick`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response?.json();
+                // console.log("trick data", data?.tricks)
+                setTrickData(data?.tricks)
+                console.log("trick data", trickData)
 
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        fetchData();
+    }, []);
 
     const [activeCard, setActiveCard] = useState(0);
     const handleButtonClick = (index) => {
         setActiveCard(index);
-        console.log(activeCard)
+        // console.log(activeCard)
     };
 
     return (
@@ -94,16 +90,16 @@ const Home = () => {
                 <div className="  w-80 min-h-full bg-white text-base-content p-5 shadow-2xl text-center">
                     <span className=" my-4  text-4xl font-bold">  Tricks</span>
                     <hr />
-                    {Tricks.map((element, index) => (
-                        <button className="bg-blue-200 my-2 p-3 rounded-xl text-start w-72" key={index} onClick={() => handleButtonClick(index)}>
-                            {element.name}
+                    {trickData?.map((element, index) => (
+                        <button className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-72 ${index == activeCard ? "border-2 border-blue-500" : ""}`} key={element?._id} onClick={() => handleButtonClick(index)}>
+                            {element?.title}
                         </button>
                     ))}
                     <hr />
                 </div>
                 <div class=" w-full bg-white p-5 shadow-2xl">
-                    <p class="text-3xl my-3 text-blue-500 font-medium" > {Tricks[activeCard].name}</p>
-                    <p class="my-3 text-lg" > {Tricks[activeCard].text}</p>
+                    <p class="text-3xl my-3 text-blue-500 font-medium" > {trickData[activeCard]?.title}</p>
+                    <p class="my-3 text-lg" > {trickData[activeCard]?.description}</p>
                 </div>
             </div>
         </>
