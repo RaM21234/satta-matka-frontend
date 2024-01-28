@@ -19,6 +19,8 @@ function App() {
           <Route exact path="/" element={<Layout Component={Home} />} />
           <Route exact path="/adminlogin" element={<AdminLogin />} />
           <Route exact path="/adminsignup" element={<AdminSignup />} />
+          <Route exact path="/admin" element={<Admin />} />
+
         </Routes>
       </BrowserRouter>
     </>

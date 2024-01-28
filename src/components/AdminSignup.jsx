@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { signupSchema } from '../schema/Schema';
 
@@ -10,16 +10,32 @@ const AdminSignup = () => {
         password: '',
         confirmPassword: '',
     };
-
-    const handleSubmit = (values, { setSubmitting }) => {
-        // Handle signup logic here (e.g., API call)
+    const navigate = useNavigate();
+    const handleSubmit = async (values) => {
         console.log('Submitted values:', values);
-        setSubmitting(false);
+
+        try {
+            const response = await fetch(`http://localhost:5000/api/auth/signup`, {
+                method: 'POST', // Specify the method
+                headers: {
+                    'Content-Type': 'application/json', // Specify the content type
+                },
+                body: JSON.stringify(values), // Convert the JavaScript object to a JSON string
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const responseData = await response.json(); // Parse the JSON response
+            console.log('token:', responseData); // Handle the success response
+            navigate('/admin');
+        } catch (error) {
+            console.error('Error:', error); // Handle errors
+        }
     };
     return (
         <>
-          
-
             <div className="flex items-center justify-center h-screen">
                 <div className="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
                     <div className="w-full">

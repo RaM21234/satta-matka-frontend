@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ReactTypingEffect from 'react-typing-effect';
 // import Sidebar from '../../components/Sidebar.jsx'
 import SattaResult from '../../components/SattaResult.jsx';
+import TimelyResultUser from './TimelyResultUser.jsx';
+import WeeklyUpdateUser from './WeeklyUpdateUser.jsx';
 
 
 const Home = () => {
@@ -101,6 +103,12 @@ const Home = () => {
                     <p class="text-3xl my-3 text-blue-500 font-medium" > {trickData[activeCard]?.title}</p>
                     <p class="my-3 text-lg" > {trickData[activeCard]?.description}</p>
                 </div>
+            </div>
+            <div>
+                <TimelyResultUser />
+            </div>
+            <div>
+                <WeeklyUpdateUser />
             </div>
         </>
     )

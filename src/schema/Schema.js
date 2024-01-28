@@ -1,5 +1,41 @@
 import * as yup from 'yup';
 
+const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+const WeeklyupdateSchema = yup.object().shape({
+    day: yup.string()
+        .oneOf(daysOfWeek, 'Invalid day')
+        .required('Day is required'),
+    data: yup.array()
+        .of(yup.number().typeError('Data must be a number'))
+        .required('Data is required')
+        .test(
+            'length',
+            'Data must exactly contain 12 numbers',
+            arr => arr?.length === 12,
+        ),
+    createdAt: yup.date().default(() => new Date()),
+});
+
+const validHeadings = ['MAIN STARLINE', 'BAAZI BAAR BAAR LIVE', 'NEW KALYAN STAR LINE', 'Mumbai Rajshree Star Line Result'];
+
+const TimelyResultSchema = yup.object().shape({
+    heading: yup.string()
+        .oneOf(validHeadings, 'Invalid heading')
+        .required('Heading is required'),
+    result: yup.string()
+        .required('Result is required'),
+    time: yup.date().default(() => new Date()),
+});
+
+const liveUpdateSchema = yup.object().shape({
+    title: yup.string().required('Title is required'),
+    startTime: yup.string().required('Start time is required'),
+    endTime: yup.string().required('End time is required'),
+    number: yup.string().matches(/^\d+$/, 'Number must be a valid number').required('Number is required'),
+    dateOfNumber: yup.date().required('Date of number is required')
+});
+
 const loginSchema = yup.object().shape({
     email: yup
         .string()
@@ -29,4 +65,11 @@ const signupSchema = yup.object().shape({
         .required('Confirm Password is required'),
 });
 
-export  {signupSchema, loginSchema};
+const TrickSchema = yup.object().shape({
+    title: yup.string()
+        .required('Title is required'),
+    description: yup.string()
+        .required('Description is required'),
+});
+
+export { signupSchema, loginSchema, liveUpdateSchema, TrickSchema, TimelyResultSchema, WeeklyupdateSchema };

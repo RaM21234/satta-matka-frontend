@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { loginSchema } from '../schema/Schema';
 
@@ -9,10 +9,31 @@ const AdminLogin = () => {
         email: '',
         password: '',
     };
-    const handleSubmit = (values, { setSubmitting }) => {
-        // Handle login logic here (e.g., API call)
+
+    const navigate = useNavigate();
+    const handleSubmit = async (values) => {
         console.log('Submitted values:', values);
-        setSubmitting(false);
+        try {
+            const response = await fetch(`http://localhost:5000/api/auth/login`, {
+                method: 'POST', // Specify the method
+                headers: {
+                    'Content-Type': 'application/json', // Specify the content type
+                },
+                body: JSON.stringify(values), // Convert the JavaScript object to a JSON string
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const responseData = await response.json(); // Parse the JSON response
+            console.log('token:', responseData.token); // Handle the success response
+            localStorage.setItem('token', responseData.token)
+            navigate('/admin');
+
+        } catch (error) {
+            console.error('Error:', error); // Handle errors
+        }
     };
     return (
         <>
