@@ -5,14 +5,13 @@ console.log("base url is ", baseUrl)
 const WeeklyUpdateUser = () => {
     const [weeklyUpdates, setWeeklyUpdates] = useState([]);
 
-    // Fetch WeeklyUpdate data from the backend
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${baseUrl}/api/weeklyupdate`); // Replace with your actual API endpoint
+                const response = await fetch(`http://localhost:5000/api/weeklyupdate`); // Replace with your actual API endpoint
                 const data = await response.json();
-                console.log("weekly updates ", data.weeklyUpdates)
-                setWeeklyUpdates(data.weeklyUpdates);
+                console.log("weekly updates ", data?.weeklyUpdates)
+                setWeeklyUpdates(data?.weeklyUpdates);
             } catch (error) {
                 console.error('Error fetching weekly updates:', error);
             }
@@ -24,7 +23,7 @@ const WeeklyUpdateUser = () => {
         <>
             <h1 class="text-center text-3xl">Weekly Updates  </h1>
             <div className="container mx-auto p-4">
-                {Object.entries(weeklyUpdates).map(([day, data]) => (
+                {Object.entries(weeklyUpdates)?.map(([day, data]) => (
                     <div key={day} className="mb-6">
                         <h2 className="text-xl font-bold mb-3">{day}</h2>
                         {Array.isArray(data) ? (

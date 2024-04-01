@@ -1,5 +1,10 @@
 import * as yup from 'yup';
 
+const entrySchema = yup.object({
+    entryText: yup.string().required('Entry is required'),
+});
+
+
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const WeeklyupdateSchema = yup.object().shape({
@@ -72,4 +77,4 @@ const TrickSchema = yup.object().shape({
         .required('Description is required'),
 });
 
-export { signupSchema, loginSchema, liveUpdateSchema, TrickSchema, TimelyResultSchema, WeeklyupdateSchema };
+export { signupSchema, loginSchema, liveUpdateSchema, TrickSchema, TimelyResultSchema, WeeklyupdateSchema, entrySchema };

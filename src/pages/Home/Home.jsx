@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import ReactTypingEffect from 'react-typing-effect';
-// import Sidebar from '../../components/Sidebar.jsx'
 import SattaResult from '../../components/SattaResult.jsx';
 import TimelyResultUser from './TimelyResultUser.jsx';
 import WeeklyUpdateUser from './WeeklyUpdateUser.jsx';
@@ -89,11 +88,11 @@ const Home = () => {
             <SattaResult data={liveUpdateData} />
 
             <div class="container flex flex-row   mx-auto py-5 my-5 space-x-4">
-                <div className="  w-80 min-h-full bg-white text-base-content p-5 shadow-2xl text-center">
+                <div className="  w-1/5 min-h-full bg-white text-base-content p-5 shadow-2xl text-center">
                     <span className=" my-4  text-4xl font-bold">  Tricks</span>
                     <hr />
                     {trickData?.map((element, index) => (
-                        <button className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-72 ${index == activeCard ? "border-2 border-blue-500" : ""}`} key={element?._id} onClick={() => handleButtonClick(index)}>
+                        <button className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${index == activeCard ? "border-2 border-blue-500" : ""}`} key={element?._id} onClick={() => handleButtonClick(index)}>
                             {element?.title}
                         </button>
                     ))}

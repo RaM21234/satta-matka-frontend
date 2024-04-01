@@ -8,7 +8,8 @@ const FormTypes = {
     LIVE_UPDATE: 'Live Update',
     POST_TRICK: 'Post a Trick',
     TIMELY_RESULT: 'Timely Result',
-    WEEKLY_UPDATE: 'Weekly Update'
+    WEEKLY_UPDATE: 'Weekly Update',
+
 };
 
 const Admin = () => {

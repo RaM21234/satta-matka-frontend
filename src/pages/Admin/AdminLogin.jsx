@@ -1,21 +1,20 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { signupSchema } from '../schema/Schema';
+import { loginSchema } from '../../schema/Schema';
 
-const AdminSignup = () => {
+
+const AdminLogin = () => {
     const initialValues = {
-        name: '',
         email: '',
         password: '',
-        confirmPassword: '',
     };
+
     const navigate = useNavigate();
     const handleSubmit = async (values) => {
         console.log('Submitted values:', values);
-
         try {
-            const response = await fetch(`http://localhost:5000/api/auth/signup`, {
+            const response = await fetch(`http://localhost:5000/api/auth/login`, {
                 method: 'POST', // Specify the method
                 headers: {
                     'Content-Type': 'application/json', // Specify the content type
@@ -28,8 +27,10 @@ const AdminSignup = () => {
             }
 
             const responseData = await response.json(); // Parse the JSON response
-            console.log('token:', responseData); // Handle the success response
+            console.log('token:', responseData.token); // Handle the success response
+            localStorage.setItem('auth-token', responseData.token)
             navigate('/admin');
+
         } catch (error) {
             console.error('Error:', error); // Handle errors
         }
@@ -40,38 +41,17 @@ const AdminSignup = () => {
                 <div className="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
                     <div className="w-full">
                         <div className="text-center">
-                            <h1 className="text-3xl font-semibold text-gray-900">Sign up</h1>
-                            <p className="mt-2 text-gray-500">Create an account to get started</p>
+                            <h1 className="text-3xl font-semibold text-gray-900">Log in</h1>
+                            <p className="mt-2 text-gray-500">Log in below to access your account</p>
                         </div>
                         <div className="mt-5">
                             <Formik
                                 initialValues={initialValues}
-                                validationSchema={signupSchema}
+                                validationSchema={loginSchema}
                                 onSubmit={handleSubmit}
                             >
                                 {({ isSubmitting }) => (
                                     <Form>
-                                        <div className="relative mt-6">
-                                            <Field
-                                                type="text"
-                                                name="name"
-                                                id="name"
-                                                placeholder="Full Name"
-                                                className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
-                                            />
-                                            <label
-                                                htmlFor="name"
-                                                className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
-                                            >
-                                                Full Name
-                                            </label>
-                                            <ErrorMessage
-                                                name="name"
-                                                component="div"
-                                                className="text-red-600"
-                                            />
-                                        </div>
-
                                         <div className="relative mt-6">
                                             <Field
                                                 type="email"
@@ -114,27 +94,6 @@ const AdminSignup = () => {
                                             />
                                         </div>
 
-                                        <div className="relative mt-6">
-                                            <Field
-                                                type="password"
-                                                name="confirmPassword"
-                                                id="confirmPassword"
-                                                placeholder="Confirm Password"
-                                                className="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
-                                            />
-                                            <label
-                                                htmlFor="confirmPassword"
-                                                className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
-                                            >
-                                                Confirm Password
-                                            </label>
-                                            <ErrorMessage
-                                                name="confirmPassword"
-                                                component="div"
-                                                className="text-red-600"
-                                            />
-                                        </div>
-
                                         <div className="my-6">
                                             <button
                                                 type="submit"
@@ -142,18 +101,18 @@ const AdminSignup = () => {
                                                     }`}
                                                 disabled={isSubmitting}
                                             >
-                                                {isSubmitting ? 'Signing up...' : 'Sign Up'}
+                                                {isSubmitting ? 'Logging in...' : 'Log In'}
                                             </button>
                                         </div>
 
                                         <p className="text-center text-sm text-gray-500">
-                                            Already have an account?
+                                            Don't have an account yet?
                                             {' '}
                                             <Link
-                                                to="/adminlogin"
+                                                to="/adminsignup"
                                                 className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
                                             >
-                                                Log in
+                                                Sign up
                                             </Link>
                                         </p>
                                     </Form>
@@ -167,4 +126,4 @@ const AdminSignup = () => {
     )
 }
 
-export default AdminSignup
+export default AdminLogin
