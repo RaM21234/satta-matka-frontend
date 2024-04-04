@@ -19,8 +19,8 @@ const FormTypes = {
   RESULT: "Result",
 };
 
-const Admin = () => {
-  const [currentForm, setCurrentForm] = useState(FormTypes.LIVE_UPDATE);
+const Admin = ({ currentForm }) => {
+  // const [currentForm, setCurrentForm] = useState(FormTypes.LIVE_UPDATE);
 
   const renderForm = () => {
     switch (currentForm) {
@@ -46,26 +46,10 @@ const Admin = () => {
   };
 
   return (
-    <>
-      <div>
-        <div className="flex justify-center mb-4 mt-3">
-          {Object.values(FormTypes).map((formType) => (
-            <button
-              key={formType}
-              className={`mx-2 px-4 py-2 rounded-md ${
-                currentForm === formType
-                  ? "bg-indigo-500 text-white"
-                  : "bg-gray-200"
-              }`}
-              onClick={() => setCurrentForm(formType)}
-            >
-              {formType}
-            </button>
-          ))}
-        </div>
-        <div>{renderForm()}</div>
-      </div>
-    </>
+    <div>
+      {renderForm()}
+
+    </div>
   );
 };
 

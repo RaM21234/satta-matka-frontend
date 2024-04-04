@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Sidebar from '../components/Sidebar'
 
-const AdminProtected = ({ Component }) => {
+const AdminProtected = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const token = sessionStorage.getItem("auth-token");
-
+    const fetchData = () => {
+      const token = localStorage.getItem("auth-token");
+      console.log("admin token", token)
       if (token) {
         console.log("Token is valid:", token);
       } else {
@@ -21,7 +22,8 @@ const AdminProtected = ({ Component }) => {
 
   return (
     <div>
-      <Component />
+      <Sidebar />
+
     </div>
   );
 };

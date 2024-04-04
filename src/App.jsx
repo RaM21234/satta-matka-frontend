@@ -9,6 +9,7 @@ import UserLogin from "./pages/User/UserLogin";
 import User from "./pages/User/User";
 import { ToastContainer } from "react-toastify";
 import UserProtected from "./components/UserProtected";
+import AdminProtected from "./components/AdminProtected";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route
             exact
             path="/admin"
-            element={<AdminProtected Component={Admin} />}
+            element={<AdminProtected />}
           />
 
           {/* user routes  */}

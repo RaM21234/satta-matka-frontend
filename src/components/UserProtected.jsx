@@ -6,7 +6,7 @@ const UserProtected = ({ Component }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = sessionStorage.getItem("auth-token");
+      const token = localStorage.getItem("auth-token");
 
       if (token) {
         console.log("Token is valid:", token);

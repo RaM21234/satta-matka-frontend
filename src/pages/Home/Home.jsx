@@ -4,6 +4,10 @@ import SattaResult from "../../components/SattaResult.jsx";
 import TimelyResultUser from "./TimelyResultUser.jsx";
 import WeeklyUpdateUser from "./WeeklyUpdateUser.jsx";
 import Result from "./Result.jsx";
+import brand from "../../assets/kalyan-matka-high-resolution-logo-white.png"
+
+const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
+console.log("base url is ", baseUrl);
 
 const Home = () => {
   const text =
@@ -58,7 +62,7 @@ const Home = () => {
       try {
         // Make a GET request to the specified URL
         const response = await fetch(
-          "http://localhost:5000/api/subhank-lucky-number"
+          `${baseUrl}/api/subhank-lucky-number`
         );
 
         // Check if the response is successful (status code 200-299)
@@ -87,7 +91,7 @@ const Home = () => {
     async function fetchData() {
       try {
         // Make a GET request to the specified URL
-        const response = await fetch("http://localhost:5000/api/lucky-number");
+        const response = await fetch(`${baseUrl}/api/lucky-number`);
 
         // Check if the response is successful (status code 200-299)
         if (!response.ok) {
@@ -115,7 +119,7 @@ const Home = () => {
     async function fetchData() {
       try {
         // Make a GET request to the specified URL
-        const response = await fetch("http://localhost:5000/api/final-ank");
+        const response = await fetch(`${baseUrl}/api/final-ank`);
 
         // Check if the response is successful (status code 200-299)
         if (!response.ok) {
@@ -163,25 +167,51 @@ const Home = () => {
               <img
                 class="object-cover object-center rounded"
                 alt="hero"
-                src="https://dummyimage.com/720x600"
+                src={brand}
               />
             </div>
           </div>
         </section>
       </div>
 
-      <div>
-        subhank:{subhank}
-        {finalAnk.map((item) => {
-          return (
-            <div key={item._id} class="border border-black">
-              <div>name :{item.name}</div>
-              <div>number :{item.number}</div>
+      <div class="container mx-auto">
+        <div class="flex flex-row  ">
+
+          <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 mr-auto bg-blue-300">
+            <div class=" text-3xl my-2">
+              Subhank:
             </div>
-          );
-        })}
-        lucky number :{luckyNumber}
+            <div class="text-red-500 text-2xl">
+
+              {subhank}
+            </div>
+          </div>
+
+          <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 ml-auto bg-blue-300">
+            <div class=" text-3xl my-2">
+              Lucky number :
+            </div>
+            <div class="text-red-500 text-2xl">
+
+              {luckyNumber}
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+
+          {finalAnk.map((item) => {
+            return (
+              <div key={item._id} class="border border-black">
+                <div>name :{item.name}</div>
+                <div>number :{item.number}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
+
       <div>Results </div>
       <Result />
       <SattaResult data={liveUpdateData} />
@@ -192,9 +222,8 @@ const Home = () => {
           <hr />
           {trickData?.map((element, index) => (
             <button
-              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${
-                index == activeCard ? "border-2 border-blue-500" : ""
-              }`}
+              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${index == activeCard ? "border-2 border-blue-500" : ""
+                }`}
               key={element?._id}
               onClick={() => handleButtonClick(index)}
             >

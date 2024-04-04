@@ -72,7 +72,7 @@ const LuckyNumber = () => {
                   <div className="flex justify-center mt-6">
                     <button
                       type="submit"
-                      className="w-full rounded-md bg-black px-4 py-2 text-white focus:bg-gray-600 focus:outline-none disabled:opacity-50"
+                      className="w-full rounded-md bg-indigo-500 px-4 py-2 text-white focus:bg-gray-600 focus:outline-none disabled:opacity-50"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Submitting..." : "Submit"}
