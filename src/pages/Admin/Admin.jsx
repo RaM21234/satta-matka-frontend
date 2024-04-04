@@ -1,56 +1,72 @@
-import React, { useState } from 'react'
-import Tricks from './Tricks.jsx'
-import LiveUpdate from './Liveupdate.jsx'
-import WeeklyResults from './WeeklyUpdate.jsx'
-import TimelyResults from './TimelyResults.jsx'
+import React, { useState } from "react";
+import Tricks from "./Tricks.jsx";
+import LiveUpdate from "./Liveupdate.jsx";
+import WeeklyResults from "./WeeklyUpdate.jsx";
+import TimelyResults from "./TimelyResults.jsx";
+import SubhankLuckyNumber from "./SubhankLuckyNumber.jsx";
+import LuckyNumber from "./LuckyNumber.jsx";
+import FinalAnk from "./FinalAnk.jsx";
+import ResultForm from "./ResultForm.jsx";
 
 const FormTypes = {
-    LIVE_UPDATE: 'Live Update',
-    POST_TRICK: 'Post a Trick',
-    TIMELY_RESULT: 'Timely Result',
-    WEEKLY_UPDATE: 'Weekly Update',
-
+  LIVE_UPDATE: "Live Update",
+  POST_TRICK: "Post a Trick",
+  TIMELY_RESULT: "Timely Result",
+  WEEKLY_UPDATE: "Weekly Update",
+  SUBHANK_LUCKY_NUMBER: "Subhank Lucky Number",
+  LUCKY_NUMBER: "Lucky Number",
+  FINAL_ANK: "Final Ank",
+  RESULT: "Result",
 };
 
 const Admin = () => {
-    const [currentForm, setCurrentForm] = useState(FormTypes.LIVE_UPDATE);
+  const [currentForm, setCurrentForm] = useState(FormTypes.LIVE_UPDATE);
 
-    const renderForm = () => {
-        switch (currentForm) {
-            case FormTypes.LIVE_UPDATE:
-                return <LiveUpdate />;
-            case FormTypes.POST_TRICK:
-                return <Tricks />;
-            case FormTypes.TIMELY_RESULT:
-                return <TimelyResults />;
-            case FormTypes.WEEKLY_UPDATE:
-                return <WeeklyResults />;
-            default:
-                return null;
-        }
-    };
+  const renderForm = () => {
+    switch (currentForm) {
+      case FormTypes.LIVE_UPDATE:
+        return <LiveUpdate />;
+      case FormTypes.POST_TRICK:
+        return <Tricks />;
+      case FormTypes.TIMELY_RESULT:
+        return <TimelyResults />;
+      case FormTypes.WEEKLY_UPDATE:
+        return <WeeklyResults />;
+      case FormTypes.SUBHANK_LUCKY_NUMBER:
+        return <SubhankLuckyNumber />;
+      case FormTypes.LUCKY_NUMBER:
+        return <LuckyNumber />;
+      case FormTypes.FINAL_ANK:
+        return <FinalAnk />;
+      case FormTypes.RESULT:
+        return <ResultForm />;
+      default:
+        return null;
+    }
+  };
 
+  return (
+    <>
+      <div>
+        <div className="flex justify-center mb-4 mt-3">
+          {Object.values(FormTypes).map((formType) => (
+            <button
+              key={formType}
+              className={`mx-2 px-4 py-2 rounded-md ${
+                currentForm === formType
+                  ? "bg-indigo-500 text-white"
+                  : "bg-gray-200"
+              }`}
+              onClick={() => setCurrentForm(formType)}
+            >
+              {formType}
+            </button>
+          ))}
+        </div>
+        <div>{renderForm()}</div>
+      </div>
+    </>
+  );
+};
 
-    return (
-        <>
-            <div>
-                <div className="flex justify-center mb-4 mt-3">
-                    {Object.values(FormTypes).map(formType => (
-                        <button
-                            key={formType}
-                            className={`mx-2 px-4 py-2 rounded-md ${currentForm === formType ? 'bg-indigo-500 text-white' : 'bg-gray-200'}`}
-                            onClick={() => setCurrentForm(formType)}
-                        >
-                            {formType}
-                        </button>
-                    ))}
-                </div>
-                <div>
-                    {renderForm()}
-                </div>
-            </div>
-        </>
-    )
-}
-
-export default Admin
+export default Admin;
