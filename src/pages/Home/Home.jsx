@@ -3,8 +3,8 @@ import ReactTypingEffect from "react-typing-effect";
 import SattaResult from "../../components/SattaResult.jsx";
 import TimelyResultUser from "./TimelyResultUser.jsx";
 import WeeklyUpdateUser from "./WeeklyUpdateUser.jsx";
-import Result from "./Result.jsx";
-import brand from "../../assets/kalyan-matka-high-resolution-logo-white.png"
+import brand from "../../assets/kalyan-matka-home-white-logo.png"
+import FinalAnk from "../../components/FinalAnk.jsx";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
 console.log("base url is ", baseUrl);
@@ -17,6 +17,8 @@ const Home = () => {
   const [liveUpdateData, setLiveUpdateData] = useState([]);
   const [trickData, setTrickData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  //liveupdate
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -86,7 +88,7 @@ const Home = () => {
   }, []);
 
   //lucky number
-  const [luckyNumber, setluckyNumber] = useState();
+  const [luckyNumber, setluckyNumber] = useState(new Date().toISOString().split('T')[0]);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -103,7 +105,7 @@ const Home = () => {
 
         // Do something with the JSON data
         console.log("lucky number ", data?.luckyNumber?.number);
-        setluckyNumber(data?.luckyNumber?.number);
+        // setluckyNumber(data?.luckyNumber?.number);
       } catch (error) {
         // Handle errors
         console.error("There was a problem with the fetch operation:", error);
@@ -113,6 +115,8 @@ const Home = () => {
     fetchData();
   }, []);
 
+
+  //final ank
   const [finalAnk, setfinalAnk] = useState([]);
 
   useEffect(() => {
@@ -147,6 +151,37 @@ const Home = () => {
     // console.log(activeCard)
   };
 
+  const [result, setresult] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        // Make a GET request to the specified URL
+        const response = await fetch("http://localhost:5000/api/result");
+
+        // Check if the response is successful (status code 200-299)
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        // Parse the response body as JSON
+        const data = await response.json();
+
+        // Do something with the JSON data
+        console.log("result ", data?.result);
+        setresult(data?.result);
+      } catch (error) {
+        // Handle errors
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+
+
+
   return (
     <>
       <div class="bg-blue-900">
@@ -174,7 +209,22 @@ const Home = () => {
         </section>
       </div>
 
-      <div class="container mx-auto">
+
+      <div class="container mx-auto flex flex-col">
+        <div class=" ">
+
+
+          <div class=" text-center my-8 py-4 shadow-xl rounded-xl ring-1 mx-auto w-full bg-blue-300">
+            <div class=" text-3xl my-2">
+              Todays Lucky number :
+            </div>
+            <div class="text-red-500 text-2xl">
+
+              {luckyNumber}
+            </div>
+          </div>
+
+        </div>
         <div class="flex flex-row  ">
 
           <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 mr-auto bg-blue-300">
@@ -189,32 +239,17 @@ const Home = () => {
 
           <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 ml-auto bg-blue-300">
             <div class=" text-3xl my-2">
-              Lucky number :
+              Final Ank :
             </div>
             <div class="text-red-500 text-2xl">
-
-              {luckyNumber}
+              <FinalAnk data={finalAnk} />
             </div>
           </div>
-
-        </div>
-
-        <div>
-
-          {finalAnk.map((item) => {
-            return (
-              <div key={item._id} class="border border-black">
-                <div>name :{item.name}</div>
-                <div>number :{item.number}</div>
-              </div>
-            );
-          })}
         </div>
       </div>
 
-      <div>Results </div>
-      <Result />
-      <SattaResult data={liveUpdateData} />
+
+      <SattaResult livedata={liveUpdateData} data={result} />
 
       <div class="container flex flex-row   mx-auto py-5 my-5 space-x-4">
         <div className="  w-1/5 min-h-full bg-white text-base-content p-5 shadow-2xl text-center">

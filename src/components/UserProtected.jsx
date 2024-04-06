@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar'
 
 const UserProtected = ({ Component }) => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const UserProtected = ({ Component }) => {
 
   return (
     <div>
+      <Navbar />
       <Component />
     </div>
   );

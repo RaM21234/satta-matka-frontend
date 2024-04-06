@@ -1,0 +1,16 @@
+.scroll-container {
+    width: 100%;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+/* Optional: Customize scrollbar appearance */
+.scroll-container::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar for Chrome/Safari */
+}
+
+.scroll-container {
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
+}
