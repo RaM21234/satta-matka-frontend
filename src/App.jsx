@@ -27,13 +27,7 @@ function App() {
           {/* admin routes */}
           <Route exact path="/adminlogin" element={<AdminLogin />} />
           <Route exact path="/adminsignup" element={<AdminSignup />} />
-          <Route exact path="/jodiuploadcsv" element={<Jodicsv />} />
-          <Route exact path="/paneluploadcsv" element={<Panelcsv />} />
-          <Route
-            exact
-            path="/admin"
-            element={<AdminProtected />}
-          />
+          <Route exact path="/admin" element={<AdminProtected />} />
 
           {/* user routes  */}
           <Route exact path="/" element={<UserProtected Component={Home} />} />
