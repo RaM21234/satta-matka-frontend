@@ -10,6 +10,8 @@ import User from "./pages/User/User";
 import { ToastContainer } from "react-toastify";
 import UserProtected from "./components/UserProtected";
 import AdminProtected from "./components/AdminProtected";
+import Jodicsv from "./pages/Admin/Jodicsv";
+import Panelcsv from "./pages/Admin/Panelcsv";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           {/* admin routes */}
           <Route exact path="/adminlogin" element={<AdminLogin />} />
           <Route exact path="/adminsignup" element={<AdminSignup />} />
+          <Route exact path="/jodiuploadcsv" element={<Jodicsv />} />
+          <Route exact path="/paneluploadcsv" element={<Panelcsv />} />
           <Route
             exact
             path="/admin"
