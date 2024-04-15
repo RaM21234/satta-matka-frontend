@@ -37,19 +37,10 @@ const Jodicsv = () => {
       }
 
       alert("CSV file uploaded successfully!");
-      fetchData();
     } catch (error) {
       console.error("Error:", error.message);
       alert("Error uploading CSV file. Please try again.");
     }
-  };
-
-  const fetchData = async () => {
-    const response = await fetch("http://localhost:5000/api/jodi//getjodis", {
-      method: "GET",
-    });
-    let data = await response.json();
-    console.log("jodi data ", data);
   };
 
   return (

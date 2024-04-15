@@ -12,6 +12,8 @@ import UserProtected from "./components/UserProtected";
 import AdminProtected from "./components/AdminProtected";
 import Jodicsv from "./pages/Admin/Jodicsv";
 import Panelcsv from "./pages/Admin/Panelcsv";
+import JodiTable from "./pages/Home/JodiTable";
+import PanelTable from "./pages/Home/PanelTable";
 
 function App() {
   return (
@@ -29,8 +31,12 @@ function App() {
           <Route exact path="/adminsignup" element={<AdminSignup />} />
           <Route exact path="/admin" element={<AdminProtected />} />
 
-          {/* user routes  */}
+          {/* home routes */}
           <Route exact path="/" element={<UserProtected Component={Home} />} />
+          <Route exact path="/jodi" element={<JodiTable />} />
+          <Route exact path="/panel" element={<PanelTable />} />
+
+          {/* user routes  */}
           <Route exact path="/userlogin" element={<UserLogin />} />
           <Route exact path="/usersignup" element={<UserSignup />} />
           <Route

@@ -34,19 +34,10 @@ const Panelcsv = () => {
       }
 
       alert("CSV file uploaded successfully!");
-      fetchData();
     } catch (error) {
       console.error("Error:", error.message);
       alert("Error uploading CSV file. Please try again.");
     }
-  };
-
-  const fetchData = async () => {
-    const response = await fetch("http://localhost:5000/api/panels", {
-      method: "GET",
-    });
-    let data = await response.json();
-    console.log("panels data ", data);
   };
 
   return (
