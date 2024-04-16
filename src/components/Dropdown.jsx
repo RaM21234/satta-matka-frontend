@@ -9,8 +9,9 @@ const Dropdown = ({ options, onSelect }) => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown w-full">
       <select
+        class="select select-bordered w-full"
         value={selectedOption}
         onChange={(e) => handleSelect(e.target.value)}
       >

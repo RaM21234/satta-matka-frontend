@@ -1,6 +1,8 @@
 import React from "react";
 import { subhankLuckyNumberSchema } from "../../schema/Schema";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
 console.log("base url is ", baseUrl);
@@ -29,8 +31,10 @@ const SubhankLuckyNumber = () => {
       let data = await response.json();
 
       console.log("Form submitted successfully!", data);
+      toast.success("action successfull");
     } catch (error) {
       console.error("There was an error submitting the form:", error);
+      toast.error("error");
     } finally {
       setSubmitting(false);
     }

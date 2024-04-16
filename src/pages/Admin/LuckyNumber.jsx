@@ -1,6 +1,8 @@
 import React from "react";
 import { luckyNumberSchema } from "../../schema/Schema";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
 console.log("base url is ", baseUrl);
@@ -27,10 +29,12 @@ const LuckyNumber = () => {
         throw new Error("Network response was not ok");
       }
       let data = await response.json();
+      toast.success("action successfull");
 
       console.log("Form submitted successfully!", data);
     } catch (error) {
       console.error("There was an error submitting the form:", error);
+      toast.error("error");
     } finally {
       setSubmitting(false);
     }

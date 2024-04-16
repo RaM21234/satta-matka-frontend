@@ -68,6 +68,7 @@ const Liveupdate = () => {
       toast.success("action successfull");
     } catch (error) {
       console.error("Error:", error); // Handle errors
+      toast.success("error adding");
     }
   };
   return (
@@ -84,18 +85,20 @@ const Liveupdate = () => {
           >
             {({ isSubmitting }) => (
               <Form>
-                <div>
+                <div class="mb-4 ">
                   <label
                     htmlFor="Title"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Title
                   </label>
-                  <Dropdown
-                    className="mx-auto mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                    options={options}
-                    onSelect={handleSelect}
-                  />
+                  <div class="">
+                    <Dropdown
+                      className="mx-auto mt-1 block w-full rounded-md border border-blue-300 shadow-lg   focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      options={options}
+                      onSelect={handleSelect}
+                    />
+                  </div>
                 </div>
 
                 <div className="mb-4">

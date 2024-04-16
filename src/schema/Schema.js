@@ -48,7 +48,6 @@ const TimelyResultSchema = yup.object().shape({
 });
 
 const liveUpdateSchema = yup.object().shape({
-  title: yup.string().required("Title is required"),
   startTime: yup.string().required("Start time is required"),
   endTime: yup.string().required("End time is required"),
   number: yup
@@ -98,7 +97,6 @@ const luckyNumberSchema = yup.object().shape({
 });
 
 const finalAnkSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
   number: yup.string().required("Number is required"),
 });
 

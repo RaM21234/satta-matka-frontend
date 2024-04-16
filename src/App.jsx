@@ -7,7 +7,7 @@ import AdminSignup from "./pages/Admin/AdminSignup";
 import UserSignup from "./pages/User/UserSignup";
 import UserLogin from "./pages/User/UserLogin";
 import User from "./pages/User/User";
-import { ToastContainer } from "react-toastify";
+
 import UserProtected from "./components/UserProtected";
 import AdminProtected from "./components/AdminProtected";
 import Jodicsv from "./pages/Admin/Jodicsv";
@@ -15,6 +15,8 @@ import Panelcsv from "./pages/Admin/Panelcsv";
 import JodiTable from "./pages/Home/JodiTable";
 import PanelTable from "./pages/Home/PanelTable";
 import EditableJodi from "./pages/Home/test1";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (

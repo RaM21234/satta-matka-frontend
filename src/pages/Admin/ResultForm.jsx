@@ -1,11 +1,40 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { resultSchema } from "../../schema/Schema";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
 console.log("base url is ", baseUrl);
 
 const ResultForm = () => {
+  const validHeadings = [
+    "Sridevi",
+    "Kalyan morning",
+    "Milan morning",
+    "Madhuri",
+    "Karnataka day",
+    "Time bazar",
+    "Milan day",
+    "Kalyan",
+    "Sridevi night",
+    "Madhuri night",
+    "Milan night",
+    "Rajdhani night",
+    "Mein bazar",
+    "Kalyan night",
+    "Madhur day",
+    "Madhur night",
+    "Mein bomby",
+    "Kuber",
+    "Sridevi mein",
+    "Sridevi mein night",
+    "Supreme day",
+    "Supreme night",
+    "Worli",
+    "Gujrat",
+  ];
+
   const initialValues = {
     name: "",
     result: "",
@@ -36,9 +65,11 @@ const ResultForm = () => {
 
       // Handle success
       console.log("Form submitted successfully!");
+      toast.success("action successfull");
     } catch (error) {
       // Handle error
       console.error("There was an error submitting the form:", error);
+      toast.error("error");
     } finally {
       setSubmitting(false);
     }
@@ -66,10 +97,17 @@ const ResultForm = () => {
                     Name
                   </label>
                   <Field
+                    as="select"
                     name="name"
-                    type="text"
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                  />
+                  >
+                    <option value="">Market Name</option>
+                    {validHeadings.map((name) => (
+                      <option key={name} value={name}>
+                        {name}
+                      </option>
+                    ))}
+                  </Field>
                   <ErrorMessage
                     name="name"
                     component="div"
