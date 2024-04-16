@@ -14,6 +14,7 @@ import Jodicsv from "./pages/Admin/Jodicsv";
 import Panelcsv from "./pages/Admin/Panelcsv";
 import JodiTable from "./pages/Home/JodiTable";
 import PanelTable from "./pages/Home/PanelTable";
+import EditableJodi from "./pages/Home/test1";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           {/* home routes */}
           <Route exact path="/" element={<UserProtected Component={Home} />} />
           <Route exact path="/jodi" element={<JodiTable />} />
+          <Route exact path="/editableJodi" element={<EditableJodi />} />
           <Route exact path="/panel" element={<PanelTable />} />
 
           {/* user routes  */}
