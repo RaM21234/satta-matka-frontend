@@ -9,6 +9,7 @@ import FinalAnk from "./FinalAnk.jsx";
 import ResultForm from "./ResultForm.jsx";
 import Jodicsv from "./Jodicsv.jsx";
 import Panelcsv from "./Panelcsv.jsx";
+import EditJodi from "./EditJodi.jsx";
 
 const FormTypes = {
   LIVE_UPDATE: "Live Update",
@@ -20,7 +21,8 @@ const FormTypes = {
   FINAL_ANK: "Final Ank",
   RESULT: "Result",
   PANEL: "Panel",
-  JODI: "Jodi",
+  JODI: "New Jodi",
+  EDIT_JODI: "Edit Jodi",
 };
 
 const Admin = ({ currentForm }) => {
@@ -46,6 +48,8 @@ const Admin = ({ currentForm }) => {
         return <Panelcsv />;
       case FormTypes.JODI:
         return <Jodicsv />;
+      case FormTypes.EDIT_JODI:
+        return <EditJodi />;
       default:
         return null;
     }

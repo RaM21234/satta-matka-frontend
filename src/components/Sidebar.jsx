@@ -11,6 +11,7 @@ import Admin from "../pages/Admin/Admin";
 import { HiHashtag } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Kalyan-Matka-logos_black.png";
+import EditJodi from "../pages/Admin/EditJodi";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ const Sidebar = () => {
     FINAL_ANK: "Final Ank",
     RESULT: "Result",
     PANEL: "Panel",
-    JODI: "Jodi",
+    EDIT_JODI: "Edit Jodi",
+    JODI: "New Jodi",
   };
 
   const [currentForm, setCurrentForm] = useState(FormTypes.LIVE_UPDATE);
@@ -50,6 +52,8 @@ const Sidebar = () => {
         return <ResultForm />;
       case FormTypes.PANEL:
         return <Panelcsv />;
+      case FormTypes.EDIT_JODI:
+        return <EditJodi />;
       case FormTypes.JODI:
         return <Jodicsv />;
       default:
@@ -82,11 +86,10 @@ const Sidebar = () => {
           <ul class="flex flex-col py-4">
             {Object.values(FormTypes).map((formType) => (
               <li
-                className={`mx-2 px-4 py-2 rounded-md ${
-                  currentForm === formType
-                    ? "bg-indigo-500 text-white"
-                    : "bg-white text-gray-500"
-                }`}
+                className={`mx-2 px-4 py-2 rounded-md ${currentForm === formType
+                  ? "bg-indigo-500 text-white"
+                  : "bg-white text-gray-500"
+                  }`}
                 key={formType}
                 onClick={() => setCurrentForm(formType)}
               >
