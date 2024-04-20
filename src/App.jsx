@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/editableJodi" element={<EditableJodi />} />
 
           {/* home routes */}
-          <Route exact path="/" element={<UserProtected Component={Home} />} />
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/jodi/:name" element={<JodiTable />} />
           <Route exact path="/panel/:name" element={<PanelTable />} />
 

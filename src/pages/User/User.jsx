@@ -6,7 +6,10 @@ const User = () => {
   return (
     <>
       <Navbar />
-      <Entry />
+      <div class=" px-10">
+
+        <Entry />
+      </div>
     </>
   );
 };

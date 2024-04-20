@@ -5,6 +5,7 @@ import TimelyResultUser from "./TimelyResultUser.jsx";
 import WeeklyUpdateUser from "./WeeklyUpdateUser.jsx";
 import brand from "../../assets/kalyan-matka-home-white-logo.png";
 import FinalAnk from "../../components/FinalAnk.jsx";
+import Navbar from "../../components/Navbar.jsx";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
 console.log("base url is ", baseUrl);
@@ -180,6 +181,7 @@ const Home = () => {
 
   return (
     <>
+      <Navbar />
       <div class="bg-blue-900">
         <section class="text-gray-600 body-font">
           <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center space-x-8">
@@ -235,9 +237,8 @@ const Home = () => {
           <hr />
           {trickData?.map((element, index) => (
             <button
-              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${
-                index == activeCard ? "border-2 border-blue-500" : ""
-              }`}
+              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${index == activeCard ? "border-2 border-blue-500" : ""
+                }`}
               key={element?._id}
               onClick={() => handleButtonClick(index)}
             >
