@@ -182,7 +182,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div class="bg-blue-900">
+      <div class="bg-[#12372A]">
         <section class="text-gray-600 body-font">
           <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center space-x-8">
             <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center ">

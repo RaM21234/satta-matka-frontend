@@ -215,11 +215,11 @@ const Entry = () => {
 
         <div className="w-8/12   px-5">
           <div role="tablist" className="tabs tabs-boxed w-52 mx-auto mt-11">
-            <a role="tab" className={`tab ${selectedTab == 'tab1' ? 'tab-active' : ''}`} onClick={() => handleTabSelect('tab1')}>Tab 1</a>
-            <a role="tab" className={`tab ${selectedTab == 'tab2' ? 'tab-active' : ''}`} onClick={() => handleTabSelect('tab2')}>Tab 2</a>
+            <a role="tab" className={`tab ${selectedTab == 'tab1' ? 'tab-active' : ''}`} onClick={() => handleTabSelect('tab1')}>  Guesses </a>
+            <a role="tab" className={`tab ${selectedTab == 'tab2' ? 'tab-active' : ''}`} onClick={() => handleTabSelect('tab2')}>Your Guesses </a>
           </div>
           {selectedTab == 'tab1' && <div className="container mx-auto mt-5">
-            <h2 className="text-2xl font-semibold mb-4">All Entry List</h2>
+
             <ul className="flex flex-col gap-4">
               {allentries.length !== 0 ? (
                 allentries.map((entry) => (
@@ -247,7 +247,6 @@ const Entry = () => {
             </ul>
           </div>}
           {selectedTab == 'tab2' && <div className="container mx-auto mt-5">
-            <h2 className="text-2xl font-semibold mb-4">Your Entry List</h2>
             <ul className="flex flex-col gap-4">
               {userEntries.length !== 0 ? (
                 userEntries.map((entry) => (

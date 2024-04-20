@@ -6,13 +6,12 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div class="flex flex-row  bg-blue-900">
+      <div class="flex flex-row  bg-[#0D9276]">
         <div class="dropdown">
           <div
             tabindex="0"
             role="button"
             class="btn btn-ghost lg:hidden"
-            style={{ color: "white" }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
