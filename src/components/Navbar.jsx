@@ -50,7 +50,7 @@ const Navbar = () => {
             </li>
             <hr />
             <li>
-              <a>Terms and Condition </a>
+              <a>Terms & Condition </a>
             </li>
             <hr />
             <li>
@@ -91,13 +91,13 @@ const Navbar = () => {
               Privacy Policy
             </li>
             <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
-              Terms and Condition{" "}
+              Terms & Condition{" "}
             </li>
             <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
               Sitemap
             </li>
             <Link
-              to="/userlogin"
+              to="/user"
               class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2 border "
             >
               Guessing Form

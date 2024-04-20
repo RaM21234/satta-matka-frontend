@@ -10,6 +10,7 @@ import ResultForm from "./ResultForm.jsx";
 import Jodicsv from "./Jodicsv.jsx";
 import Panelcsv from "./Panelcsv.jsx";
 import EditJodi from "./EditJodi.jsx";
+import UpdatePanel from "./UpdatePanel.jsx";
 
 const FormTypes = {
   LIVE_UPDATE: "Live Update",
@@ -19,8 +20,9 @@ const FormTypes = {
   SUBHANK_LUCKY_NUMBER: "Subhank Lucky Number",
   LUCKY_NUMBER: "Lucky Number",
   FINAL_ANK: "Final Ank",
-  RESULT: "Result",
-  PANEL: "Panel",
+  RESULT: "Satta Result",
+  PANEL: "New Panel",
+  PANEL_UPDATE: "Update Panel",
   JODI: "New Jodi",
   EDIT_JODI: "Edit Jodi",
 };
@@ -46,6 +48,8 @@ const Admin = ({ currentForm }) => {
         return <ResultForm />;
       case FormTypes.PANEL:
         return <Panelcsv />;
+      case FormTypes.PANEL_UPDATE:
+        return <UpdatePanel />;
       case FormTypes.JODI:
         return <Jodicsv />;
       case FormTypes.EDIT_JODI:

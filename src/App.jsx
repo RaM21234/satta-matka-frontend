@@ -33,21 +33,17 @@ function App() {
           <Route exact path="/adminlogin" element={<AdminLogin />} />
           <Route exact path="/adminsignup" element={<AdminSignup />} />
           <Route exact path="/admin" element={<AdminProtected />} />
+          <Route exact path="/editableJodi" element={<EditableJodi />} />
 
           {/* home routes */}
           <Route exact path="/" element={<UserProtected Component={Home} />} />
-          <Route exact path="/jodi" element={<JodiTable />} />
-          <Route exact path="/editableJodi" element={<EditableJodi />} />
-          <Route exact path="/panel" element={<PanelTable />} />
+          <Route exact path="/jodi/:name" element={<JodiTable />} />
+          <Route exact path="/panel/:name" element={<PanelTable />} />
 
           {/* user routes  */}
           <Route exact path="/userlogin" element={<UserLogin />} />
           <Route exact path="/usersignup" element={<UserSignup />} />
-          <Route
-            exact
-            path="/user"
-            element={<UserProtected Component={User} />}
-          />
+          <Route exact path="/user" element={<User />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -3,13 +3,24 @@ import { useFormik } from "formik";
 import { entrySchema } from "../../schema/Schema";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Entry = () => {
+  const navigate = useNavigate();
   const initialValues = {
     entryText: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {
+    const token = localStorage.getItem("user-token");
+    if (token) {
+      console.log("Token is valid:", token);
+    } else {
+      console.log("Token is invalid or not found");
+      navigate("/userlogin");
+      return;
+    }
+
     try {
       console.log(values);
       // Send a POST request to your API endpoint with the entry data
@@ -17,7 +28,7 @@ const Entry = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": `${localStorage.getItem("auth-token")}`,
+          "auth-token": `${localStorage.getItem("user-token")}`,
         },
         body: JSON.stringify({ entry: values.entryText }),
       });
@@ -43,7 +54,7 @@ const Entry = () => {
     onSubmit,
   });
 
-  const [entries, setEntries] = useState([]);
+  const [allentries, setAllEntries] = useState([]);
 
   useEffect(() => {
     // Fetch entries when the component mounts
@@ -53,16 +64,15 @@ const Entry = () => {
   const fetchEntries = async () => {
     try {
       // Send a GET request to fetch entries
-      const response = await fetch("http://localhost:5000/api/user/entry", {
-        headers: {
-          "auth-token": `${localStorage.getItem("auth-token")}`,
-        },
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/user/allentry",
+        {}
+      );
 
       if (response.ok) {
         const data = await response.json();
         // Update the state with the fetched entries
-        setEntries(data?.entries);
+        setAllEntries(data?.entries);
         console.log("frontend entry data ", entries);
       } else {
         // Handle error responses
@@ -87,7 +97,7 @@ const Entry = () => {
       );
       if (response.ok) {
         // Remove the deleted entry from the state
-        setEntries((prevEntries) =>
+        setAllEntries((prevEntries) =>
           prevEntries.filter((entry) => entry._id !== id)
         );
         // Show a success toast notification

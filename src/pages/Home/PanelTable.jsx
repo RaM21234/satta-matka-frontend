@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const PanelTable = () => {
+  const { name } = useParams();
   const [panelData, setpanelData] = useState([]);
+
+  console.log("panel name", name);
+
   const fetchData = async () => {
-    const response = await fetch("http://localhost:5000/api/panels", {
+    const response = await fetch(`http://localhost:5000/api/panels/${name}`, {
       method: "GET",
     });
     let data = await response.json();
     console.log("panel data ", data);
-    setpanelData(data.data[1]);
+    setpanelData(data.data);
   };
 
   useEffect(() => {

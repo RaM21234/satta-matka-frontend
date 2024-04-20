@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const JodiTable = () => {
+  const { name } = useParams();
+
+  console.log("jodi name", name);
+
   const [selectedJodi, setselectedJodi] = useState("");
+
   const fetchData = async () => {
-    const response = await fetch("http://localhost:5000/api/jodi/getjodis", {
+    const response = await fetch(`http://localhost:5000/api/jodi/get/${name}`, {
       method: "GET",
     });
     let data = await response.json();

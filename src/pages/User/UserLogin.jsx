@@ -29,7 +29,7 @@ const UserLogin = () => {
 
       const responseData = await response.json(); // Parse the JSON response
       console.log("token:", responseData.token); // Handle the success response
-      localStorage.setItem("auth-token", responseData.token);
+      localStorage.setItem("user-token", responseData.token);
       navigate("/user");
     } catch (error) {
       console.error("Error:", error); // Handle errors

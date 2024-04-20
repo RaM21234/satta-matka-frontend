@@ -12,6 +12,7 @@ import { HiHashtag } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Kalyan-Matka-logos_black.png";
 import EditJodi from "../pages/Admin/EditJodi";
+import UpdatePanel from "../pages/Admin/UpdatePanel";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -24,10 +25,11 @@ const Sidebar = () => {
     SUBHANK_LUCKY_NUMBER: "Subhank Lucky Number",
     LUCKY_NUMBER: "Lucky Number",
     FINAL_ANK: "Final Ank",
-    RESULT: "Result",
-    PANEL: "Panel",
-    EDIT_JODI: "Edit Jodi",
+    RESULT: "Satta Result",
+    PANEL: "New Panel",
+    PANEL_UPDATE: "Update Panel",
     JODI: "New Jodi",
+    EDIT_JODI: "Edit Jodi",
   };
 
   const [currentForm, setCurrentForm] = useState(FormTypes.LIVE_UPDATE);
@@ -52,6 +54,8 @@ const Sidebar = () => {
         return <ResultForm />;
       case FormTypes.PANEL:
         return <Panelcsv />;
+      case FormTypes.PANEL_UPDATE:
+        return <UpdatePanel />;
       case FormTypes.EDIT_JODI:
         return <EditJodi />;
       case FormTypes.JODI:
@@ -86,10 +90,11 @@ const Sidebar = () => {
           <ul class="flex flex-col py-4">
             {Object.values(FormTypes).map((formType) => (
               <li
-                className={`mx-2 px-4 py-2 rounded-md ${currentForm === formType
-                  ? "bg-indigo-500 text-white"
-                  : "bg-white text-gray-500"
-                  }`}
+                className={`mx-2 px-4 py-2 rounded-md ${
+                  currentForm === formType
+                    ? "bg-indigo-500 text-white"
+                    : "bg-white text-gray-500"
+                }`}
                 key={formType}
                 onClick={() => setCurrentForm(formType)}
               >

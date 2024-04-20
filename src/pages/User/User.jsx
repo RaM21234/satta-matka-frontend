@@ -1,12 +1,14 @@
-import React from 'react'
-import Entry from './Entry'
+import React from "react";
+import Entry from "./Entry";
+import Navbar from "../../components/Navbar";
 
 const User = () => {
-    return (
-        <>
-            <Entry />
-        </>
-    )
-}
+  return (
+    <>
+      <Navbar />
+      <Entry />
+    </>
+  );
+};
 
-export default User
+export default User;

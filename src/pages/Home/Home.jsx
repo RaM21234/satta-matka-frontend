@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactTypingEffect from "react-typing-effect";
-import SattaResult from "../../components/SattaResult.jsx";
+import SattaResult from "./SattaResult.jsx";
 import TimelyResultUser from "./TimelyResultUser.jsx";
 import WeeklyUpdateUser from "./WeeklyUpdateUser.jsx";
-import brand from "../../assets/kalyan-matka-home-white-logo.png"
+import brand from "../../assets/kalyan-matka-home-white-logo.png";
 import FinalAnk from "../../components/FinalAnk.jsx";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
@@ -63,9 +63,7 @@ const Home = () => {
     async function fetchData() {
       try {
         // Make a GET request to the specified URL
-        const response = await fetch(
-          `${baseUrl}/api/subhank-lucky-number`
-        );
+        const response = await fetch(`${baseUrl}/api/subhank-lucky-number`);
 
         // Check if the response is successful (status code 200-299)
         if (!response.ok) {
@@ -88,7 +86,9 @@ const Home = () => {
   }, []);
 
   //lucky number
-  const [luckyNumber, setluckyNumber] = useState(new Date().toISOString().split('T')[0]);
+  const [luckyNumber, setluckyNumber] = useState(
+    new Date().toISOString().split("T")[0]
+  );
   useEffect(() => {
     async function fetchData() {
       try {
@@ -114,7 +114,6 @@ const Home = () => {
 
     fetchData();
   }, []);
-
 
   //final ank
   const [finalAnk, setfinalAnk] = useState([]);
@@ -179,9 +178,6 @@ const Home = () => {
     fetchData();
   }, []);
 
-
-
-
   return (
     <>
       <div class="bg-blue-900">
@@ -209,45 +205,27 @@ const Home = () => {
         </section>
       </div>
 
-
       <div class="container mx-auto flex flex-col">
         <div class=" ">
-
-
           <div class=" text-center my-8 py-4 shadow-xl rounded-xl ring-1 mx-auto w-full bg-blue-300">
-            <div class=" text-3xl my-2">
-              Todays Lucky number :
-            </div>
-            <div class="text-red-500 text-2xl">
-
-              {luckyNumber}
-            </div>
+            <div class=" text-3xl my-2">Todays Lucky number :</div>
+            <div class="text-red-500 text-2xl">{luckyNumber}</div>
           </div>
-
         </div>
         <div class="flex flex-row  ">
-
           <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 mr-auto bg-blue-300">
-            <div class=" text-3xl my-2">
-              Subhank:
-            </div>
-            <div class="text-red-500 text-2xl">
-
-              {subhank}
-            </div>
+            <div class=" text-3xl my-2">Subhank:</div>
+            <div class="text-red-500 text-2xl">{subhank}</div>
           </div>
 
           <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 ml-auto bg-blue-300">
-            <div class=" text-3xl my-2">
-              Final Ank :
-            </div>
+            <div class=" text-3xl my-2">Final Ank :</div>
             <div class="text-red-500 text-2xl">
               <FinalAnk data={finalAnk} />
             </div>
           </div>
         </div>
       </div>
-
 
       <SattaResult livedata={liveUpdateData} data={result} />
 
@@ -257,8 +235,9 @@ const Home = () => {
           <hr />
           {trickData?.map((element, index) => (
             <button
-              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${index == activeCard ? "border-2 border-blue-500" : ""
-                }`}
+              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${
+                index == activeCard ? "border-2 border-blue-500" : ""
+              }`}
               key={element?._id}
               onClick={() => handleButtonClick(index)}
             >
