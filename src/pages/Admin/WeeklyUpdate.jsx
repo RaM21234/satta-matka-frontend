@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { WeeklyupdateSchema } from "../../schema/Schema";
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dropdown from "../../components/Dropdown";
 
 const baseUrl = import.meta.env.VITE_APP_BASE_URL || 5000;
 console.log("base url is ", baseUrl);
 
 const WeeklyUpdate = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const options = ["Kalyan Night/ Main Bazar", "Kalyan"];
+
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+  };
+
   const daysOfWeek = [
     "Monday",
     "Tuesday",
@@ -18,10 +26,12 @@ const WeeklyUpdate = () => {
     "Sunday",
   ];
   const initialValuesWeeklyUpdate = {
+    name: "",
     day: "",
     data: Array(12).fill(""), // Initialize with 11 empty strings
   };
   const handleSubmitWeeklyUpdate = async (values, { setSubmitting }) => {
+    values.name = selectedOption;
     console.log("Submitted values:", values);
 
     try {
@@ -29,6 +39,7 @@ const WeeklyUpdate = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "admin-token": localStorage.getItem("admin-token"), // Specify the content type
         },
         body: JSON.stringify(values),
       });
@@ -61,6 +72,21 @@ const WeeklyUpdate = () => {
           >
             {({ values, isSubmitting }) => (
               <Form>
+                <div class="mb-4 ">
+                  <label
+                    htmlFor="Title"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Title
+                  </label>
+                  <div class="">
+                    <Dropdown
+                      className="mx-auto mt-1 block w-full rounded-md border border-blue-300 shadow-lg   focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      options={options}
+                      onSelect={handleSelect}
+                    />
+                  </div>
+                </div>
                 <div className="mb-4">
                   <label
                     htmlFor="day"

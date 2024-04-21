@@ -32,7 +32,7 @@ const AdminSignup = () => {
 
       const responseData = await response.json(); // Parse the JSON response
       console.log("auth-token:", responseData); // Handle the success response
-      //   localStorage.setItem("auth-token", responseData.token);
+      localStorage.setItem("admin-token", responseData.token);
       navigate("/admin");
     } catch (error) {
       console.error("Error:", error); // Handle errors

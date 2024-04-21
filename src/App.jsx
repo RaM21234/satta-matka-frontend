@@ -1,17 +1,13 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Admin from "./pages/Admin/Admin";
 import AdminLogin from "./pages/Admin/AdminLogin";
 import AdminSignup from "./pages/Admin/AdminSignup";
 import UserSignup from "./pages/User/UserSignup";
 import UserLogin from "./pages/User/UserLogin";
 import User from "./pages/User/User";
 
-import UserProtected from "./components/UserProtected";
 import AdminProtected from "./components/AdminProtected";
-import Jodicsv from "./pages/Admin/Jodicsv";
-import Panelcsv from "./pages/Admin/Panelcsv";
 import JodiTable from "./pages/Home/JodiTable";
 import PanelTable from "./pages/Home/PanelTable";
 import EditableJodi from "./pages/Home/test1";

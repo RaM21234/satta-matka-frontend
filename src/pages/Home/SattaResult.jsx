@@ -38,7 +38,10 @@ const SattaResult = ({ livedata, data }) => {
                             </h2>
                             <div class="flex space-x-10"></div>
                             <div class="space-x-8 mt-3">
-                              <button class="btn bg-blue-300 text-base">
+                              <button
+                                class="btn bg-blue-300 text-base"
+                                onClick={() => location.reload()}
+                              >
                                 {" "}
                                 Refresh
                               </button>

@@ -57,6 +57,9 @@ const Jodicsv = () => {
         "http://localhost:5000/api/jodi/import-csv",
         {
           method: "POST",
+          headers: {
+            "admin-token": localStorage.getItem("admin-token"), // Specify the content type
+          },
           body: formData,
         }
       );

@@ -6,6 +6,40 @@ const JodiTable = () => {
 
   console.log("jodi name", name);
 
+  const numbers = [
+    "16",
+    "11",
+    "27",
+    "22",
+    "33",
+    "38",
+    "44",
+    "49",
+    "55",
+    "50",
+    "61",
+    "66",
+    "77",
+    "72",
+    "88",
+    "83",
+    "99",
+    "94",
+    "0",
+    "5",
+  ];
+
+  function createTrueMapFromArray(array) {
+    const map = new Map();
+    array.forEach((item) => {
+      map.set(item, true);
+    });
+    return map;
+  }
+
+  const numbersMap = createTrueMapFromArray(numbers);
+  console.log(numbersMap.get("16"));
+
   const [selectedJodi, setselectedJodi] = useState("");
 
   const fetchData = async () => {
@@ -58,26 +92,68 @@ const JodiTable = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {selectedJodi?.data?.map((item, index) => (
-              <tr key={index}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+              <tr key={index} class="font-bold">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm  ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Mon}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Tue}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Wed}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Thu}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Fri}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Sat}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                <td
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${
+                    numbersMap.get(item?.Mon) === true
+                      ? "text-red-400"
+                      : "text-gray-800"
+                  }`}
+                >
                   {item?.Sun}
                 </td>
               </tr>

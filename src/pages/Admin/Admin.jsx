@@ -4,7 +4,6 @@ import Liveupdate from "./Liveupdate.jsx";
 import WeeklyResults from "./WeeklyUpdate.jsx";
 import TimelyResults from "./TimelyResults.jsx";
 import SubhankLuckyNumber from "./SubhankLuckyNumber.jsx";
-import LuckyNumber from "./LuckyNumber.jsx";
 import FinalAnk from "./FinalAnk.jsx";
 import ResultForm from "./ResultForm.jsx";
 import Jodicsv from "./Jodicsv.jsx";
@@ -18,7 +17,7 @@ const FormTypes = {
   TIMELY_RESULT: "Timely Result",
   WEEKLY_UPDATE: "Weekly Update",
   SUBHANK_LUCKY_NUMBER: "Subhank Lucky Number",
-  LUCKY_NUMBER: "Lucky Number",
+
   FINAL_ANK: "Final Ank",
   RESULT: "Satta Result",
   PANEL: "New Panel",
@@ -40,8 +39,6 @@ const Admin = ({ currentForm }) => {
         return <WeeklyResults />;
       case FormTypes.SUBHANK_LUCKY_NUMBER:
         return <SubhankLuckyNumber />;
-      case FormTypes.LUCKY_NUMBER:
-        return <LuckyNumber />;
       case FormTypes.FINAL_ANK:
         return <FinalAnk />;
       case FormTypes.RESULT:

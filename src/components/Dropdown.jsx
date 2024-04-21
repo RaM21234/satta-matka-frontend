@@ -14,8 +14,9 @@ const Dropdown = ({ options, onSelect }) => {
         class="select select-bordered w-full"
         value={selectedOption}
         onChange={(e) => handleSelect(e.target.value)}
+        placeholder="Select Market Name"
       >
-
+        <option value="">Select Market Name</option>
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option}

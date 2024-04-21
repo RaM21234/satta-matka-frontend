@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from '../components/Sidebar'
+import Sidebar from "../components/Sidebar";
 
 const AdminProtected = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = () => {
-      const token = localStorage.getItem("auth-token");
-      console.log("admin token", token)
+      const token = localStorage.getItem("admin-token");
+      console.log("admin token", token);
       if (token) {
         console.log("Token is valid:", token);
       } else {
@@ -23,7 +23,6 @@ const AdminProtected = () => {
   return (
     <div>
       <Sidebar />
-
     </div>
   );
 };

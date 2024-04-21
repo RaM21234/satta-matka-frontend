@@ -91,6 +91,7 @@ const UpdatePanel = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "admin-token": localStorage.getItem("admin-token"), // Specify the content type
         },
         body: JSON.stringify(payload),
       });

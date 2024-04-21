@@ -6,13 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const Entry = () => {
-
   const [allentries, setAllEntries] = useState([]);
   const [userEntries, setuserEntries] = useState([]);
   const [editingEntryId, setEditingEntryId] = useState(null);
   const [editedEntryText, setEditedEntryText] = useState("");
-  const [selectedTab, setselectedTab] = useState('tab1');
-
+  const [selectedTab, setselectedTab] = useState("tab1");
 
   const navigate = useNavigate();
   const initialValues = {
@@ -62,14 +60,12 @@ const Entry = () => {
     onSubmit,
   });
 
-
   useEffect(() => {
-    if (selectedTab === 'tab1') {
+    if (selectedTab === "tab1") {
       fetchEntries();
     } else {
       fetchEntriesUser();
     }
-
   }, [selectedTab]);
 
   const fetchEntries = async () => {
@@ -97,14 +93,12 @@ const Entry = () => {
   const fetchEntriesUser = async () => {
     try {
       // Send a GET request to fetch entries
-      const response = await fetch(
-        "http://localhost:5000/api/user/entry", {
+      const response = await fetch("http://localhost:5000/api/user/entry", {
         method: "GET",
         headers: {
           "auth-token": `${localStorage.getItem("user-token")}`,
         },
-      }
-      );
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -148,6 +142,7 @@ const Entry = () => {
       }
     } catch (error) {
       console.error("Error deleting entry:", error);
+
       // Show an error toast notification
       toast.error("Error deleting entry", { position: "top-right" });
     }
@@ -193,15 +188,15 @@ const Entry = () => {
     setEditedEntryText(e.target.value);
   };
   const handleTabSelect = (tab) => {
-    if (tab === 'tab2') {
-      if (!localStorage.getItem('user-token')) {
-        toast.error('login first')
+    if (tab === "tab2") {
+      if (!localStorage.getItem("user-token")) {
+        toast.error("login first");
         return;
       }
     }
-    setselectedTab(tab)
-    console.log("selected tab is ", tab)
-  }
+    setselectedTab(tab);
+    console.log("selected tab is ", tab);
+  };
 
   return (
     <>
@@ -211,115 +206,126 @@ const Entry = () => {
         }
       </div> */}
       <div className="flex flex-row  ">
-
-
         <div className="w-8/12   px-5">
           <div role="tablist" className="tabs tabs-boxed w-52 mx-auto mt-11">
-            <a role="tab" className={`tab ${selectedTab == 'tab1' ? 'tab-active' : ''}`} onClick={() => handleTabSelect('tab1')}>  Guesses </a>
-            <a role="tab" className={`tab ${selectedTab == 'tab2' ? 'tab-active' : ''}`} onClick={() => handleTabSelect('tab2')}>Your Guesses </a>
+            <a
+              role="tab"
+              className={`tab ${selectedTab == "tab1" ? "tab-active" : ""}`}
+              onClick={() => handleTabSelect("tab1")}
+            >
+              {" "}
+              Guesses{" "}
+            </a>
+            <a
+              role="tab"
+              className={`tab ${selectedTab == "tab2" ? "tab-active" : ""}`}
+              onClick={() => handleTabSelect("tab2")}
+            >
+              Your Guesses{" "}
+            </a>
           </div>
-          {selectedTab == 'tab1' && <div className="container mx-auto mt-5">
-
-            <ul className="flex flex-col gap-4">
-              {allentries.length !== 0 ? (
-                allentries.map((entry) => (
-                  <li
-                    key={entry._id}
-                    className="bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
-                  >
-                    <div className="mb-2">
-                      <strong>User:</strong> {entry?.user?.name}
-                    </div>
-                    <div>
-                      <strong>Entry: </strong>
-                      <>{entry.entry}</>
-
-                    </div>
-                    <div className="mt-4 text-gray-600 text-sm">
-                      Created at: {new Date(entry.createdAt).toLocaleString()}
-                    </div>
-
-                  </li>
-                ))
-              ) : (
-                <div>Create an entry, No entry to display</div>
-              )}
-            </ul>
-          </div>}
-          {selectedTab == 'tab2' && <div className="container mx-auto mt-5">
-            <ul className="flex flex-col gap-4">
-              {userEntries.length !== 0 ? (
-                userEntries.map((entry) => (
-                  <li
-                    key={entry._id}
-                    className="flex flex-row bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
-                  >
-                    <div>
-
+          {selectedTab == "tab1" && (
+            <div className="container mx-auto mt-5">
+              <ul className="flex flex-col gap-4">
+                {allentries.length !== 0 ? (
+                  allentries.map((entry) => (
+                    <li
+                      key={entry._id}
+                      className="bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
+                    >
                       <div className="mb-2">
                         <strong>User:</strong> {entry?.user?.name}
                       </div>
                       <div>
                         <strong>Entry: </strong>
-                        {editingEntryId === entry._id ? (
-                          // Display the edit form if entry is being edited
-                          <form
-                            onSubmit={(e) => {
-                              e.preventDefault();
-                              handleEdit(entry._id);
-                            }}
-                            class="flex flex-row "
-                          >
-                            <input
-                              type="text"
-                              name="editedEntryText"
-                              value={editedEntryText}
-                              onChange={handleEditChange}
-                              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                              required
-                            />
-                            <button
-                              type="submit"
-                              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 ml-2 rounded focus:outline-none focus:ring focus:ring-blue-300 mt-3"
-                            >
-                              Save
-                            </button>
-                          </form>
-                        ) : (
-                          // Display the entry text if not being edited
-                          <>{entry.entry}</>
-                        )}
+                        <>{entry.entry}</>
                       </div>
                       <div className="mt-4 text-gray-600 text-sm">
                         Created at: {new Date(entry.createdAt).toLocaleString()}
                       </div>
-                    </div>
-                    <div class="ml-auto">
-                      <button
-                        onClick={() => handleDelete(entry._id)}
-                        className="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        onClick={() => {
-                          setEditingEntryId(entry._id);
-                          setEditedEntryText(entry.entry);
-                        }}
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 ml-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
-                      >
-                        Edit
-                      </button>
-                    </div>
-                  </li>
-                ))
-              ) : (
-                <div>Create an entry, No entry to display</div>
-              )}
-            </ul>
-          </div>}
+                    </li>
+                  ))
+                ) : (
+                  <div>Create an entry, No entry to display</div>
+                )}
+              </ul>
+            </div>
+          )}
+          {selectedTab == "tab2" && (
+            <div className="container mx-auto mt-5">
+              <ul className="flex flex-col gap-4">
+                {userEntries.length !== 0 ? (
+                  userEntries.map((entry) => (
+                    <li
+                      key={entry._id}
+                      className="flex flex-row bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
+                    >
+                      <div>
+                        <div className="mb-2">
+                          <strong>User:</strong> {entry?.user?.name}
+                        </div>
+                        <div>
+                          <strong>Entry: </strong>
+                          {editingEntryId === entry._id ? (
+                            // Display the edit form if entry is being edited
+                            <form
+                              onSubmit={(e) => {
+                                e.preventDefault();
+                                handleEdit(entry._id);
+                              }}
+                              class="flex flex-row "
+                            >
+                              <input
+                                type="text"
+                                name="editedEntryText"
+                                value={editedEntryText}
+                                onChange={handleEditChange}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                required
+                              />
+                              <button
+                                type="submit"
+                                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 ml-2 rounded focus:outline-none focus:ring focus:ring-blue-300 mt-3"
+                              >
+                                Save
+                              </button>
+                            </form>
+                          ) : (
+                            // Display the entry text if not being edited
+                            <>{entry.entry}</>
+                          )}
+                        </div>
+                        <div className="mt-4 text-gray-600 text-sm">
+                          Created at:{" "}
+                          {new Date(entry.createdAt).toLocaleString()}
+                        </div>
+                      </div>
+                      <div class="ml-auto">
+                        <button
+                          onClick={() => handleDelete(entry._id)}
+                          className="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300"
+                        >
+                          Delete
+                        </button>
+                        <button
+                          onClick={() => {
+                            setEditingEntryId(entry._id);
+                            setEditedEntryText(entry.entry);
+                          }}
+                          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 ml-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <div>Create an entry, No entry to display</div>
+                )}
+              </ul>
+            </div>
+          )}
         </div>
-
 
         <div class="w-4/12  mx-auto">
           <div className="mt-12 mx-auto max-w-md bg-white p-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl ">
@@ -361,8 +367,7 @@ const Entry = () => {
             </form>
           </div>
         </div>
-
-      </div >
+      </div>
     </>
   );
 };

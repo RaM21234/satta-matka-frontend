@@ -7,7 +7,7 @@ import Dropdown from "../../components/Dropdown";
 
 const Liveupdate = () => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+  console.log("admin token ", localStorage.getItem("admin-token"));
   const options = [
     "Sridevi",
     "Kalyan morning",
@@ -55,6 +55,7 @@ const Liveupdate = () => {
         method: "POST", // Specify the method
         headers: {
           "Content-Type": "application/json", // Specify the content type
+          "admin-token": localStorage.getItem("admin-token"), // Specify the content type
         },
         body: JSON.stringify(values), // Convert the JavaScript object to a JSON string
       });
@@ -68,7 +69,7 @@ const Liveupdate = () => {
       toast.success("action successfull");
     } catch (error) {
       console.error("Error:", error); // Handle errors
-      toast.success("error adding");
+      toast.error("error adding");
     }
   };
   return (

@@ -16,7 +16,7 @@ const AdminLogin = () => {
   const handleSubmit = async (values) => {
     console.log("Submitted values:", values);
     try {
-      const response = await fetch(`${baseUrl}/api/auth/login`, {
+      const response = await fetch(`${baseUrl}/api/auth/adminlogin`, {
         method: "POST", // Specify the method
         headers: {
           "Content-Type": "application/json", // Specify the content type
@@ -30,7 +30,7 @@ const AdminLogin = () => {
 
       const responseData = await response.json(); // Parse the JSON response
       console.log("token:", responseData.token); // Handle the success response
-      localStorage.setItem("auth-token", responseData.token);
+      localStorage.setItem("admin-token", responseData.token);
       navigate("/admin");
     } catch (error) {
       console.error("Error:", error); // Handle errors

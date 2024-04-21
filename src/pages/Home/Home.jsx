@@ -90,31 +90,6 @@ const Home = () => {
   const [luckyNumber, setluckyNumber] = useState(
     new Date().toISOString().split("T")[0]
   );
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        // Make a GET request to the specified URL
-        const response = await fetch(`${baseUrl}/api/lucky-number`);
-
-        // Check if the response is successful (status code 200-299)
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        // Parse the response body as JSON
-        const data = await response.json();
-
-        // Do something with the JSON data
-        console.log("lucky number ", data?.luckyNumber?.number);
-        // setluckyNumber(data?.luckyNumber?.number);
-      } catch (error) {
-        // Handle errors
-        console.error("There was a problem with the fetch operation:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
 
   //final ank
   const [finalAnk, setfinalAnk] = useState([]);
@@ -179,6 +154,23 @@ const Home = () => {
     fetchData();
   }, []);
 
+  const [weeklyUpdates, setWeeklyUpdates] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/weeklyupdate`);
+        const data = await response.json();
+        console.log("weekly updates ", data?.weeklyUpdates);
+        setWeeklyUpdates(data?.weeklyUpdates);
+      } catch (error) {
+        console.error("Error fetching weekly updates:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -237,8 +229,9 @@ const Home = () => {
           <hr />
           {trickData?.map((element, index) => (
             <button
-              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${index == activeCard ? "border-2 border-blue-500" : ""
-                }`}
+              className={`bg-blue-200 my-2 p-3 rounded-xl text-start w-full ${
+                index == activeCard ? "border-2 border-blue-500" : ""
+              }`}
               key={element?._id}
               onClick={() => handleButtonClick(index)}
             >
@@ -258,9 +251,14 @@ const Home = () => {
       <div>
         <TimelyResultUser />
       </div>
-      <div>
-        <WeeklyUpdateUser />
-      </div>
+
+      {weeklyUpdates.map((item, index) => {
+        return (
+          <div key={index}>
+            <WeeklyUpdateUser data={item} key={index} />
+          </div>
+        );
+      })}
     </>
   );
 };

@@ -5,7 +5,39 @@ const PanelTable = () => {
   const { name } = useParams();
   const [panelData, setpanelData] = useState([]);
 
-  console.log("panel name", name);
+  const numbers = [
+    "16",
+    "11",
+    "27",
+    "22",
+    "33",
+    "38",
+    "44",
+    "49",
+    "55",
+    "50",
+    "61",
+    "66",
+    "77",
+    "72",
+    "88",
+    "83",
+    "99",
+    "94",
+    "0",
+    "5",
+  ];
+
+  function createTrueMapFromArray(array) {
+    const map = new Map();
+    array.forEach((item) => {
+      map.set(item, true);
+    });
+    return map;
+  }
+
+  const numbersMap = createTrueMapFromArray(numbers);
+  console.log(numbersMap.get("16"));
 
   const fetchData = async () => {
     const response = await fetch(`http://localhost:5000/api/panels/${name}`, {
@@ -72,7 +104,13 @@ const PanelTable = () => {
                   {day?.weekData?.map((item, index) => {
                     return (
                       <td className=" px-6 py-4 whitespace-nowrap text-sm text-gray-800 border">
-                        <div class="flex flex-row justify-between ">
+                        <div
+                          className={`flex flex-row justify-between font-bold  ${
+                            numbersMap.get(item?.center) === true
+                              ? "text-red-400"
+                              : "text-gray-800"
+                          }`}
+                        >
                           <div>
                             <p>{item.left_top}</p>
                             <p>{item.left_med}</p>

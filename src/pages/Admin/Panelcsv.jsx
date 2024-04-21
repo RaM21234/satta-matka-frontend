@@ -55,6 +55,9 @@ const Panelcsv = () => {
     try {
       const response = await fetch("http://localhost:5000/api/import-csv", {
         method: "POST",
+        headers: {
+          "admin-token": localStorage.getItem("admin-token"), // Specify the content type
+        },
         body: formData,
       });
 

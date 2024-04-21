@@ -4,7 +4,6 @@ import Tricks from "../pages/Admin/Tricks";
 import TimelyResults from "../pages/Admin/TimelyResults";
 import WeeklyResults from "../pages/Admin/WeeklyUpdate";
 import SubhankLuckyNumber from "../pages/Admin/SubhankLuckyNumber";
-import LuckyNumber from "../pages/Admin/LuckyNumber";
 import FinalAnk from "../pages/Admin/FinalAnk";
 import ResultForm from "../pages/Admin/ResultForm";
 import Admin from "../pages/Admin/Admin";
@@ -23,7 +22,7 @@ const Sidebar = () => {
     TIMELY_RESULT: "Timely Result",
     WEEKLY_UPDATE: "Weekly Update",
     SUBHANK_LUCKY_NUMBER: "Subhank Lucky Number",
-    LUCKY_NUMBER: "Lucky Number",
+
     FINAL_ANK: "Final Ank",
     RESULT: "Satta Result",
     PANEL: "New Panel",
@@ -46,8 +45,6 @@ const Sidebar = () => {
         return <WeeklyResults />;
       case FormTypes.SUBHANK_LUCKY_NUMBER:
         return <SubhankLuckyNumber />;
-      case FormTypes.LUCKY_NUMBER:
-        return <LuckyNumber />;
       case FormTypes.FINAL_ANK:
         return <FinalAnk />;
       case FormTypes.RESULT:
