@@ -8,7 +8,7 @@ const WeeklyUpdateUser = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/weeklyupdate`); // Replace with your actual API endpoint
+                const response = await fetch(`http://localhost:5000/api/weeklyupdate`);
                 const data = await response.json();
                 console.log("weekly updates ", data?.weeklyUpdates)
                 setWeeklyUpdates(data?.weeklyUpdates);
@@ -19,35 +19,84 @@ const WeeklyUpdateUser = () => {
 
         fetchData();
     }, []);
+
+    function chunkArray(array, size) {
+        const chunks = [];
+        for (let i = 0; i < array.length; i += size) {
+            chunks.push(array.slice(i, i + size));
+        }
+        return chunks;
+    }
+
+    function chunkObject(obj) {
+        const chunkedObj = {};
+        for (const [key, value] of Object.entries(obj)) {
+            chunkedObj[key] = chunkArray(value, 3);
+        }
+        return chunkedObj;
+    }
+
+    const chunkedObject = chunkObject(weeklyUpdates);
+    console.log(chunkedObject);
     return (
         <>
             <h1 class="text-center text-3xl">Weekly Updates  </h1>
             <div className="container mx-auto p-4">
-                {Object.entries(weeklyUpdates)?.map(([day, data]) => (
-                    <div key={day} className="mb-6">
-                        <h2 className="text-xl font-bold mb-3">{day}</h2>
-                        {Array.isArray(data) ? (
-                            <table className="min-w-full border-collapse border border-gray-200">
-                                <thead>
-                                    <tr>
-                                        {[...Array(12).keys()].map(index => (
-                                            <th key={index} className="border border-gray-200 px-4 py-2">{index + 1}</th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        {data.map((item, index) => (
-                                            <td key={index} className="border border-gray-200 px-4 py-2 text-center">{item}</td>
-                                        ))}
-                                    </tr>
-                                </tbody>
-                            </table>
-                        ) : (
-                            <p>Data for {day} is not available or not in the correct format.</p>
-                        )}
-                    </div>
-                ))}
+                {/* <table border="1">
+                    <tbody>
+                        {Object.entries(weeklyUpdates)?.map(([day, data]) => (
+                            <tr key={day}>
+                                <td>{day}</td>
+                                <td>{data[0]}</td>
+                                <td>{data[1]}{data[2]}</td>
+                                <td>{data[3]}</td>
+                                <td>{data[4]}{data[5]}</td>
+                                <td>{data[6]}</td>
+                                <td>{data[7]}{data[8]}</td>
+                                <td>{data[9]}</td>
+                                <td>{data[10]}{data[11]}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table> */}
+                <table className=" ">
+                    <tbody>
+                        {Object.entries(weeklyUpdates)?.map(([day, data]) => (
+                            <tr key={day} className="border border-black border-r-0 w-full">
+                                <td className="border  border-black px-4 py-2 font-bold">{day}</td>
+                                {chunkedObject[day].map((item, index) => {
+                                    return (
+
+                                        <td class=" w-1/4">
+                                            <div class="flex flex-row ">
+
+                                                <p key={index} className="py-2 w-1/2 text-center text-red-500 text-3xl font-bold">
+                                                    {item[0]}
+                                                </p>
+                                                <p key={index} className="border border-black border-t-0 border-b-0 font-bold  py-2 w-1/2 text-center">
+
+
+                                                    {item[1]}
+
+                                                    <div class="w-full  " style={{
+                                                        backgroundColor: 'black',
+                                                        height: '0.5px'
+                                                    }} />
+
+                                                    {item[2]}
+
+
+                                                </p>
+                                            </div>
+                                        </td>
+
+                                    )
+                                })}
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </>
     )
