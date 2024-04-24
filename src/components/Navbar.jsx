@@ -8,11 +8,7 @@ const Navbar = () => {
     <>
       <div class="flex flex-row  bg-[#0D9276]">
         <div class="dropdown">
-          <div
-            tabindex="0"
-            role="button"
-            class="btn btn-ghost lg:hidden"
-          >
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -40,7 +36,7 @@ const Navbar = () => {
               <a>About Us</a>
             </li>
             <hr />
-            <li>
+            {/* <li>
               <a>Contact Us</a>
             </li>
             <hr />
@@ -54,7 +50,7 @@ const Navbar = () => {
             <hr />
             <li>
               <a>Sitemap</a>
-            </li>
+            </li> */}
             <hr />
             <li>
               {" "}
@@ -83,7 +79,7 @@ const Navbar = () => {
             <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
               About Us
             </li>
-            <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
+            {/* <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
               Contact Us
             </li>
             <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
@@ -94,7 +90,7 @@ const Navbar = () => {
             </li>
             <li class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2">
               Sitemap
-            </li>
+            </li> */}
             <Link
               to="/user"
               class="hover:bg-white rounded-lg hover:text-blue-700 px-3 py-2 border "

@@ -200,13 +200,25 @@ const Entry = () => {
 
   return (
     <>
-      {/* <div className="flex flex-row-reverse">
-        {localStorage.getItem('user-token') ? <button className="btn btn-primary" onClick={() => localStorage.removeItem('user-token')}>Logout</button>
-          : <button className="btn btn-primary" onClick={() => navigate("/userlogin")}>Login</button>
-        }
-      </div> */}
-      <div className="flex flex-row  ">
-        <div className="w-8/12   px-5">
+      <div className="flex flex-row-reverse">
+        {localStorage.getItem("user-token") ? (
+          <button
+            className="btn btn-primary mt-2"
+            onClick={() => localStorage.removeItem("user-token")}
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary mt-2"
+            onClick={() => navigate("/userlogin")}
+          >
+            Login
+          </button>
+        )}
+      </div>
+      <div className="flex md:flex-row flex-col-reverse ">
+        <div className="md:w-8/12   px-5">
           <div role="tablist" className="tabs tabs-boxed w-52 mx-auto mt-11">
             <a
               role="tab"
@@ -327,7 +339,7 @@ const Entry = () => {
           )}
         </div>
 
-        <div class="w-4/12  mx-auto">
+        <div class="md:w-4/12  mx-auto">
           <div className="mt-12 mx-auto max-w-md bg-white p-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl ">
             <h1 className="text-3xl font-semibold text-center text-gray-900 mb-4">
               Entry Form

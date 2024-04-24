@@ -199,20 +199,20 @@ const Home = () => {
         </section>
       </div>
 
-      <div class="container mx-auto flex flex-col">
+      <div class="container mx-auto flex flex-col  p-2">
         <div class=" ">
           <div class=" text-center my-8 py-4 shadow-xl rounded-xl ring-1 mx-auto w-full bg-blue-300">
             <div class=" text-3xl my-2">Todays Lucky number :</div>
             <div class="text-red-500 text-2xl">{luckyNumber}</div>
           </div>
         </div>
-        <div class="flex flex-row  ">
-          <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 mr-auto bg-blue-300">
+        <div class="flex md:flex-row flex-col ">
+          <div class="md:w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 md:mr-auto bg-blue-300">
             <div class=" text-3xl my-2">Subhank:</div>
             <div class="text-red-500 text-2xl">{subhank}</div>
           </div>
 
-          <div class="w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 ml-auto bg-blue-300">
+          <div class="md:w-2/5 text-center my-8 py-4 shadow-xl rounded-xl ring-1 md:ml-auto bg-blue-300">
             <div class=" text-3xl my-2">Final Ank :</div>
             <div class="text-red-500 text-2xl">
               <FinalAnk data={finalAnk} />

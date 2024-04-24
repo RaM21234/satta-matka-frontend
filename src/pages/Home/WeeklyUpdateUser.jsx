@@ -20,6 +20,15 @@ const WeeklyUpdateUser = ({ data }) => {
   }
 
   const chunkedObject = chunkObject(data.updates);
+  const daysMapping = {
+    Monday: "सोम",
+    Tuesday: "मंगल",
+    Wednesday: "बुध",
+    Thursday: "गुरु",
+    Friday: "शुक्र",
+    Saturday: "शनि",
+    Sunday: "रवि",
+  };
 
   return (
     <>
@@ -30,7 +39,7 @@ const WeeklyUpdateUser = ({ data }) => {
             {Object.entries(data?.updates)?.map(([day, data]) => (
               <tr key={day} className="border border-black border-r-0 w-full">
                 <td className="border  border-black px-4 py-2 font-bold">
-                  {day}
+                  {daysMapping[day]}
                 </td>
                 {chunkedObject[day].map((item, index) => {
                   return (

@@ -7,7 +7,8 @@ import SubhankLuckyNumber from "../pages/Admin/SubhankLuckyNumber";
 import FinalAnk from "../pages/Admin/FinalAnk";
 import ResultForm from "../pages/Admin/ResultForm";
 import Admin from "../pages/Admin/Admin";
-import { HiHashtag } from "react-icons/hi";
+import { HiHashtag, HiMenu, HiX } from "react-icons/hi";
+import { FaChevronLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/Kalyan-Matka-logos_black.png";
 import EditJodi from "../pages/Admin/EditJodi";
@@ -15,6 +16,8 @@ import UpdatePanel from "../pages/Admin/UpdatePanel";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false); // State to handle sidebar toggle
 
   const FormTypes = {
     LIVE_UPDATE: "Live Update",
@@ -73,12 +76,24 @@ const Sidebar = () => {
         rel="stylesheet"
         href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       />
-
+      <div className="lg:hidden">
+        <button className="p-4" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? (
+            <FaChevronLeft className="h-6 w-6" />
+          ) : (
+            <HiMenu className="h-6 w-6" />
+          )}
+        </button>
+      </div>
       <div
-        class="min-h-screen overflow-y-auto flex flex-row shadow-xl"
+        className={`flex z-50   h-screen ${
+          isOpen ? "flex-row" : "hidden"
+        } lg:flex lg:flex-row min-h-screen shadow-xl absolute inset-y-0 left-0 transform ${
+          !isOpen && "-translate-x-full"
+        } lg:relative lg:translate-x-0 transition duration-300 ease-in-out`}
         style={{ position: "absolute", top: "0px" }}
       >
-        <div class="flex flex-col w-60 bg-white rounded-r-3xl overflow-hidden">
+        <div class="flex flex-col w-60 bg-white rounded-r-3xl overflow-scroll-y  shadow-xl">
           <div class="flex items-center justify-center h-20 shadow-md">
             <h1 class="text-3xl uppercase text-indigo-500">
               <img src={logo} />
@@ -107,20 +122,25 @@ const Sidebar = () => {
               </li>
             ))}
 
-            <li class="mx-2 px-4 py-2 rounded-md">
+            <li class="  rounded-b-3xl px-4 bg-white">
               <a
                 href="#"
-                class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800"
+                class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 w-60  text-gray-500 hover:text-gray-800"
               >
-                <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400">
+                <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400 ml-2">
                   <i class="bx bx-log-out"></i>
                 </span>
-                <span class="text-sm font-medium " onClick={handleLogout}>
+                <span class="text-sm font-medium  " onClick={handleLogout}>
                   Logout
                 </span>
               </a>
             </li>
           </ul>
+        </div>
+        <div className={`flex items-center bg-gray-200 lg:hidden`}>
+          <button className="" onClick={() => setIsOpen(false)}>
+            <FaChevronLeft className=" text-gray-600" />
+          </button>
         </div>
       </div>
 
