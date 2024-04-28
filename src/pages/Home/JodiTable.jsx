@@ -58,7 +58,7 @@ const JodiTable = () => {
   return (
     <div>
       <h1
-        className="text-3xl font-bold  mb-4 text-center py-4  text-white"
+        className="text-3xl font-bold  mb-4 text-center py-4  text-white w-full"
         style={{ backgroundColor: "rgb(22 38 85)" }}
       >
         {selectedJodi?.name} Chart
@@ -94,65 +94,58 @@ const JodiTable = () => {
             {selectedJodi?.data?.map((item, index) => (
               <tr key={index} class="font-bold">
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm  ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm  ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Mon}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Tue}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Wed}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Thu}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Fri}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Sat}
                 </td>
                 <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm ${
-                    numbersMap.get(item?.Mon) === true
-                      ? "text-red-400"
-                      : "text-gray-800"
-                  }`}
+                  className={`px-6 py-4 whitespace-nowrap text-sm ${numbersMap.get(item?.Mon) === true
+                    ? "text-red-400"
+                    : "text-gray-800"
+                    }`}
                 >
                   {item?.Sun}
                 </td>

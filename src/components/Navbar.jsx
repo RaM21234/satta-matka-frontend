@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div class="flex flex-row  bg-[#0D9276]">
+      <div class="flex flex-row  bg-[#176B87]">
         <div class="dropdown">
           <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
             <svg
@@ -51,10 +51,10 @@ const Navbar = () => {
             <li>
               <a>Sitemap</a>
             </li> */}
-            <hr />
+            {/* <hr /> */}
             <li>
               {" "}
-              <Link to="/userlogin">Guessing Form</Link>
+              <Link to="/user">Guessing Form</Link>
             </li>
           </ul>
         </div>

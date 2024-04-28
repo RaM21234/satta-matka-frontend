@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import './final.css'
 
 const FinalAnk = ({ data }) => {
+    console.log(
+        "final ank page", data)
     const scrollContainerRef = useRef(null);
     const [items, setItems] = useState([]);
 
@@ -36,7 +38,7 @@ const FinalAnk = ({ data }) => {
 
         // Cleanup function to clear interval on component unmount
         return () => clearInterval(intervalId);
-    }, []); // Empty dependency array ensures this effect runs only once on component mount
+    }, [data]); // Empty dependency array ensures this effect runs only once on component mount
 
     return (
         <div

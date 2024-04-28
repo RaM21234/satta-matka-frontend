@@ -26,25 +26,25 @@ const TimelyResultUser = () => {
     }, []);
 
     return (
-        <>
-            <div className="container mx-auto p-4">
-                <div className="flex flex-wrap justify-between">
+        <div class="" style={{ backgroundColor: 'rgb(243 219 203)' }}>
+            <div className="container mx-auto  p-4">
+                <div className="flex flex-wrap justify-between my-14">
                     {Object.entries(groupedResults).map(([heading, results]) => (
                         <>
-                            <div key={heading} className="mb-6 w-full md:w-full lg:w-1/2 px-2 overflow-y-scroll h-96">
-                                <h2 className="text-xl font-bold mb-3">{heading}</h2>
-                                <table className="min-w-full border-collapse border border-gray-200 ">
+                            <div key={heading} className="mb-6 w-full md:w-full lg:w-[48%] mx-2 overflow-y-scroll h-96 rounded-xl p-10 " style={{ backgroundColor: '#EFBC9B' }}>
+                                <h2 className="text-xl font-bold mb-3 sedan-regular">{heading}</h2>
+                                <table className="min-w-full border-collapse border border-black ">
                                     <thead>
                                         <tr>
-                                            <th className="border border-gray-200 px-4 py-2 text-left">Result</th>
-                                            <th className="border border-gray-200 px-4 py-2 text-left">Time</th>
+                                            <th className="border border-black px-4 py-2 text-left">Result</th>
+                                            <th className="border border-black px-4 py-2 text-left">Time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {results.map(result => (
-                                            <tr key={result._id} className="border-b border-gray-200">
-                                                <td className="border border-gray-200 px-4 py-2">{result.result}</td>
-                                                <td className="border border-gray-200 px-4 py-2">{new Date(result.time).toLocaleTimeString()}</td>
+                                            <tr key={result._id} className="border-b border-black">
+                                                <td className="border border-black px-4 py-2">{result.result}</td>
+                                                <td className="border border-black px-4 py-2">{new Date(result.time).toLocaleTimeString()}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -54,7 +54,7 @@ const TimelyResultUser = () => {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

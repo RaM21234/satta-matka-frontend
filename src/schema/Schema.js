@@ -103,9 +103,6 @@ const finalAnkSchema = yup.object().shape({
 const resultSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
   result: yup.string().required("Result is required"),
-  //   resultDate: yup.date().required("Result Date is required"),
-  startDate: yup.string().required("Start Date is required"),
-  endDate: yup.string().required("End Date is required"),
 });
 
 export {

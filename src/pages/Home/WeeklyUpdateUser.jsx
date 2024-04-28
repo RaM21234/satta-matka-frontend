@@ -31,8 +31,8 @@ const WeeklyUpdateUser = ({ data }) => {
   };
 
   return (
-    <>
-      <h1 class="text-center text-3xl">{data?.name}</h1>
+    <div class="">
+      <h1 class="text-center w-96 mx-auto rounded-xl text-3xl my-10 sedan-regular text-green-600 bg-green-200  py-5">{data?.name}</h1>
       <div className="container mx-auto p-4">
         <table className=" ">
           <tbody>
@@ -76,7 +76,7 @@ const WeeklyUpdateUser = ({ data }) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

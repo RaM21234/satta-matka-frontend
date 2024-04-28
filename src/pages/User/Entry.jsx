@@ -4,6 +4,7 @@ import { entrySchema } from "../../schema/Schema";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const Entry = () => {
   const [allentries, setAllEntries] = useState([]);
@@ -43,6 +44,7 @@ const Entry = () => {
         const data = await response.json();
         // Update the UI with the new entry (you can handle this part)
         console.log("New entry added:", data.savedEntry);
+        toast.success('Guess Added')
         resetForm(); // Clear the form
         fetchEntriesUser();
       } else {
@@ -245,16 +247,19 @@ const Entry = () => {
                       key={entry._id}
                       className="bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
                     >
-                      <div className="mb-2">
-                        <strong>User:</strong> {entry?.user?.name}
+                      <div className="mb-2 flex flex-row">
+                        <div class="font-bold">
+                          {entry?.user?.name}
+                        </div>
+                        <div className=" text-gray-600 ml-auto">
+                          {new Date(entry.createdAt).toLocaleString()}
+                        </div>
                       </div>
-                      <div>
-                        <strong>Entry: </strong>
-                        <>{entry.entry}</>
+                      <div class=" flex  justify-center">
+
+                        {entry.entry}
                       </div>
-                      <div className="mt-4 text-gray-600 text-sm">
-                        Created at: {new Date(entry.createdAt).toLocaleString()}
-                      </div>
+
                     </li>
                   ))
                 ) : (
@@ -270,14 +275,20 @@ const Entry = () => {
                   userEntries.map((entry) => (
                     <li
                       key={entry._id}
-                      className="flex flex-row bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
+                      className="flex flex-col bg-white p-4 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transition duration-300"
                     >
                       <div>
-                        <div className="mb-2">
-                          <strong>User:</strong> {entry?.user?.name}
+                        <div className="mb-2 flex flex-row">
+                          <div class="font-bold ">
+                            {entry?.user?.name}
+                          </div>
+                          <div className=" text-gray-600 ml-auto">
+                            {new Date(entry.createdAt).toLocaleString()}
+                          </div>
+
                         </div>
                         <div>
-                          <strong>Entry: </strong>
+
                           {editingEntryId === entry._id ? (
                             // Display the edit form if entry is being edited
                             <form
@@ -303,21 +314,20 @@ const Entry = () => {
                               </button>
                             </form>
                           ) : (
-                            // Display the entry text if not being edited
-                            <>{entry.entry}</>
+                            <div class=" flex  justify-center">
+
+                              {entry.entry}
+                            </div>
                           )}
                         </div>
-                        <div className="mt-4 text-gray-600 text-sm">
-                          Created at:{" "}
-                          {new Date(entry.createdAt).toLocaleString()}
-                        </div>
+
                       </div>
                       <div class="ml-auto">
                         <button
                           onClick={() => handleDelete(entry._id)}
                           className="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-red-300"
                         >
-                          Delete
+                          <MdDelete />
                         </button>
                         <button
                           onClick={() => {
@@ -326,7 +336,7 @@ const Entry = () => {
                           }}
                           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 ml-2 rounded focus:outline-none focus:ring focus:ring-blue-300"
                         >
-                          Edit
+                          <MdEdit />
                         </button>
                       </div>
                     </li>
@@ -342,7 +352,7 @@ const Entry = () => {
         <div class="md:w-4/12  mx-auto">
           <div className="mt-12 mx-auto max-w-md bg-white p-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl ">
             <h1 className="text-3xl font-semibold text-center text-gray-900 mb-4">
-              Entry Form
+              Guess Form
             </h1>
             <form onSubmit={formik.handleSubmit}>
               <div className="mb-4">
@@ -350,15 +360,17 @@ const Entry = () => {
                   htmlFor="entryText"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Entry
+                  Guess
                 </label>
-                <input
+                <textarea
+                  rows={5}
                   type="text"
                   name="entryText"
+                  placeholder="Make your guess"
                   value={formik.values.entryText}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 p-2"
                   required
                 />
               </div>
@@ -377,6 +389,21 @@ const Entry = () => {
                 </button>
               </div>
             </form>
+          </div>
+          <div className="mt-12 xl:text-3xl lg:text-xl text-lg md:text-xs mx-auto max-w-md bg-white p-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl flex flex-col ">
+            <div class="mx-auto">
+              Make your guess renowned!
+            </div>
+            <div class="mx-auto">
+              Register now!
+            </div>
+            <div class="flex flex-row mx-auto">
+              Contact
+              <div class="text-red-600 ml-2 animate-pulse" style={{ animationDuration: '1s', animationIterationCount: 'infinite' }}>
+                +91 99999-99999
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
